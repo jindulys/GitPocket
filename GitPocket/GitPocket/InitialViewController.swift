@@ -11,9 +11,9 @@ import UIKit
 
 class InitialViewController: UIViewController {
   
-  @IBOutlet weak var tokenLabel: UILabel!
-  
+  @IBOutlet weak var tableView: UITableView!
   var netEngine: NetEngine?
+  var events: [Event]?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,19 +26,35 @@ class InitialViewController: UIViewController {
       self.netEngine?.requestOAuthAccess()
       return
     }
-    self.tokenLabel!.text = token
     
-    
+    self.tableView!.delegate = self
+    self.tableView!.dataSource = self
+    print(token)
     // Test events
     self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
       if let results = events {
-        for event in results {
-          print(event.Description())
-        }
+        self.events = results
+        self.tableView!.reloadData()
       }
       
-      print("Event count is \(events?.count)")
     })
     
+  }
+}
+
+extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("testCell") as UITableViewCell!
+    if let events = self.events {
+      cell.textLabel?.text = events[indexPath.row].Description()
+    }
+    return cell
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if let events = self.events {
+      return events.count
+    }
+    return 0
   }
 }

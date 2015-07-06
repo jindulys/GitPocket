@@ -58,8 +58,12 @@
 **Activities**
 - Create a **User** model to save a information about github user
 - Get **Event** feed
+- Show those feeds in a simple UITableView
 
 
 **TODO**
 - Since I use xcode 7.0 could not use pod, since most of pod files only support xcode 6.3 I couldn't use a better way to parse JSON
   I decided to implement one by myself
+- Add Etag to event request http header to avoid repeat request
+- Add PullToRefress
+- Learn how to use autoLayout in UITableViewCell
