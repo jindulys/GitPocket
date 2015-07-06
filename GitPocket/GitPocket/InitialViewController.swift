@@ -11,14 +11,21 @@ import UIKit
 
 class InitialViewController: UIViewController {
   
+  @IBOutlet weak var tokenLabel: UILabel!
+  
   var netEngine: NetEngine?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationItem.title = "User"
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     self.netEngine = appDelegate.netEngine
     
-    self.netEngine?.requestOAuthAccess()
+    guard let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String else {
+      self.netEngine?.requestOAuthAccess()
+      return
+    }
+    self.tokenLabel!.text = token
   }
 }

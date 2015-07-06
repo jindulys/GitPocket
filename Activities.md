@@ -25,6 +25,7 @@
 - learn how to use OAuth 2.0
 - how to correctly use redirectURL
  [An instruction on how to properly configure your iOS Application to oper a specific URL schema](http://iosdevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html)
+- finished OAuth token access's first step (get the code)
 
 
 **Notes**
@@ -38,7 +39,7 @@
   4. **Site A** then passes that **Authorization Code** along with its **Secret** back to **Site B** in return for a **Security Token**
   5. **Site A** then makes requests to **Site B** on behalf of **User X** by bundling the **Security Token** along with requests
 
-- correctly configure your github Application
+- Correctly configure your github Application
 
   1. on **Github Developer Page**(https://github.com/settings/developers) registers your app, remember your **clientID** and **clientSecret**, also set some strange redirectURL like *ilovelittlepolorbear://lollllo*
   2. on your Xcode Info.plist add an new item **URL Types** then add **URL Schema** as key and *ilovelittlepolorbear://lollllo* as value
@@ -46,3 +47,5 @@
 
             func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool
   to retrieve your code and then apply for your token.
+
+- HTTP POST working flow (https://en.wikipedia.org/wiki/POST_(HTTP))
