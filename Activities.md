@@ -57,3 +57,9 @@
 
 **Activities**
 - Create a **User** model to save a information about github user
+- Get **Event** feed
+
+
+**TODO**
+- Since I use xcode 7.0 could not use pod, since most of pod files only support xcode 6.3 I couldn't use a better way to parse JSON
+  I decided to implement one by myself

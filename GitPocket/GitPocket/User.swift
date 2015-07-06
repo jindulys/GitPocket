@@ -46,6 +46,7 @@ class User {
             }
           }
         }
+        return users
       }
       return nil
     } catch _ {

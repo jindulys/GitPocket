@@ -113,7 +113,7 @@ class NetEngine {
   
   
   // Totally test
-  func requestEventWithCompletionHandler(completionHander:(data:String, error:NSError?)-> Void) {
+  func requestEventWithCompletionHandler(completionHander:(data:[Event]?, error:NSError?)-> Void) {
     // Method1 use access_token
     
     if let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String {
@@ -123,24 +123,18 @@ class NetEngine {
         if error != nil {
           print("event error")
         } else {
-          print(data)
-          
           if let httpResponse = response as? NSHTTPURLResponse {
             switch httpResponse.statusCode {
               case 200...299:
-                do {
-                  let JSONDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSArray
-                  
-                  print(JSONDictionary)
-                  
-                } catch _ {
-                  print("JSON PARSE ERROR")
+                if let events = Event.parseJSONDataIntoEvents(data!) {
+                  completionHander(data: events, error: nil)
+                } else {
+                  print("no events")
                 }
               default:
                print("Response Error")
             }
           }
-          completionHander(data: "haha", error: nil)
         }
         
       })

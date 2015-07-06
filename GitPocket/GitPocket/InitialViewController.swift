@@ -30,8 +30,14 @@ class InitialViewController: UIViewController {
     
     
     // Test events
-    self.netEngine?.requestEventWithCompletionHandler({ (data, error) -> Void in
-      print(data)
+    self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
+      if let results = events {
+        for event in results {
+          print(event.Description())
+        }
+      }
+      
+      print("Event count is \(events?.count)")
     })
     
   }
