@@ -49,3 +49,11 @@
   to retrieve your code and then apply for your token.
 
 - HTTP POST working flow (https://en.wikipedia.org/wiki/POST_(HTTP))
+
+  we use *application/x-www-form-urlencoded* for *Content-Type* in HTTPHeader
+
+# Day 3
+## July 6, Monday
+
+**Activities**
+- Create a **User** model to save a information about github user

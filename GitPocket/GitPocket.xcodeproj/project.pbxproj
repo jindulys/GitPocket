@@ -17,6 +17,7 @@
 		0E83BAE21B484654007C3EB4 /* GitPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */; };
 		0EAD6A951B49CBD000332CA7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */; };
 		0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A961B49D69D00332CA7 /* NetEngine.swift */; };
+		0EAD6A991B4AC45200332CA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A981B4AC45200332CA7 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		0E83BAE31B484654007C3EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		0EAD6A961B49D69D00332CA7 /* NetEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetEngine.swift; path = Model/NetEngine.swift; sourceTree = "<group>"; };
+		0EAD6A981B4AC45200332CA7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				0EAD6A961B49D69D00332CA7 /* NetEngine.swift */,
+				0EAD6A981B4AC45200332CA7 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			files = (
 				0EAD6A951B49CBD000332CA7 /* InitialViewController.swift in Sources */,
 				0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */,
+				0EAD6A991B4AC45200332CA7 /* User.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
 				0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,

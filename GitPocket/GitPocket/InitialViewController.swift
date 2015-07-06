@@ -27,5 +27,12 @@ class InitialViewController: UIViewController {
       return
     }
     self.tokenLabel!.text = token
+    
+    
+    // Test events
+    self.netEngine?.requestEventWithCompletionHandler({ (data, error) -> Void in
+      print(data)
+    })
+    
   }
 }

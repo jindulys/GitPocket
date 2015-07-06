@@ -16,6 +16,14 @@ class NetEngine {
   let redirectURI = "gitpocket://admin"
   let scope = "user,repo"
   let githubTokenURL = "https://github.com/login/oauth/access_token"
+  let baseURL = "https://api.github.com/"
+  
+  
+  // Some properties that may change later
+  let githubEventURL = "https://api.github.com/users/jindulys/received_events?"
+  var token: String?
+  var currentUser: User?
+  
   
   func requestOAuthAccess() {
     let url = "\(githubOAuthURL)client_id=\(clientID)&redirect_uri=\(redirectURI)&scope=\(scope)"
@@ -62,6 +70,9 @@ class NetEngine {
                   if isToken {
                     NSUserDefaults.standardUserDefaults().setObject(item, forKey: "Token")
                     NSUserDefaults.standardUserDefaults().synchronize()
+                    
+                    self.token = item
+                    self.requestAuthenticatedUser()
                   }
                   
                   if item == "access_token" {
@@ -76,7 +87,65 @@ class NetEngine {
         }
       }
     })!.resume()
+  }
+  
+  func requestAuthenticatedUser() {
+    let userURLString = "\(baseURL)user?access_token=\(token!)"
+    let userURL = NSURL(string: userURLString)
+    let userTask = NSURLSession.sharedSession().dataTaskWithURL(userURL!) { (data, response, error) -> Void in
+      if error != nil {
+        print("Error Result")
+      } else {
+        if let httpResponse = response as? NSHTTPURLResponse {
+          switch httpResponse.statusCode {
+            case 200...299:
+              let user = User.parseJSONDataIntoSingleUser(data!)
+              self.currentUser = user
+            default:
+              print("Authenticated User Response Error")
+          }
+        }
+      }
+    }
     
+    userTask!.resume()
+  }
+  
+  
+  // Totally test
+  func requestEventWithCompletionHandler(completionHander:(data:String, error:NSError?)-> Void) {
+    // Method1 use access_token
+    
+    if let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String {
+      let eventURLString = "\(githubEventURL)access_token=\(token)"
+      let eventURL = NSURL(string: eventURLString)
+      let eventTask = NSURLSession.sharedSession().dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in
+        if error != nil {
+          print("event error")
+        } else {
+          print(data)
+          
+          if let httpResponse = response as? NSHTTPURLResponse {
+            switch httpResponse.statusCode {
+              case 200...299:
+                do {
+                  let JSONDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSArray
+                  
+                  print(JSONDictionary)
+                  
+                } catch _ {
+                  print("JSON PARSE ERROR")
+                }
+              default:
+               print("Response Error")
+            }
+          }
+          completionHander(data: "haha", error: nil)
+        }
+        
+      })
+      eventTask?.resume()
+    }
     
   }
 }
