@@ -27,20 +27,46 @@ class InitialViewController: UIViewController {
       return
     }
     
+    self.netEngine?.token = token
     self.tableView!.delegate = self
     self.tableView!.dataSource = self
     print(token)
+    
+    // add refresh button
+    
+    let button = UIBarButtonItem(title: "Continue", style: .Plain, target: self, action: "sayHello:")
+    self.navigationItem.leftBarButtonItem = button
+    
     // Test events
     self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
       if let results = events {
         self.events = results
-        self.tableView!.reloadData()
+        //self.tableView!.reloadData()
+        for event in results {
+          print(event.Description())
+        }
       }
       
     })
-    
   }
+  
+  func sayHello(sender: UIBarButtonItem) {
+    print("Just A say hello")
+    
+    
+    self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
+      if let results = events {
+        self.events = results
+        //self.tableView!.reloadData()
+        for event in results {
+          print(event.Description())
+        }
+      }
+    })
+  }
+  
 }
+
 
 extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

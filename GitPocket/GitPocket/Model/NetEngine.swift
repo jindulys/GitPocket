@@ -17,12 +17,15 @@ class NetEngine {
   let scope = "user,repo"
   let githubTokenURL = "https://github.com/login/oauth/access_token"
   let baseURL = "https://api.github.com/"
+  let testEventURL = "https://api.github.com/users/jindulys/received_events"
+
   
   
   // Some properties that may change later
   let githubEventURL = "https://api.github.com/users/jindulys/received_events?"
   var token: String?
   var currentUser: User?
+  var eventETag: String?
   
   
   func requestOAuthAccess() {
@@ -113,32 +116,87 @@ class NetEngine {
   
   
   // Totally test
-  func requestEventWithCompletionHandler(completionHander:(data:[Event]?, error:NSError?)-> Void) {
+  func requestEventWithCompletionHandler(completionHander:(events:[Event]?, error:NSError?)-> Void) {
     // Method1 use access_token
     
-    if let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String {
-      let eventURLString = "\(githubEventURL)access_token=\(token)"
-      let eventURL = NSURL(string: eventURLString)
-      let eventTask = NSURLSession.sharedSession().dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in
+    
+    if let token = self.token {
+      
+      // Another Try
+      // generate request
+      let request = NSMutableURLRequest(URL: NSURL(string: testEventURL)!)
+      request.HTTPMethod = "GET"
+      
+      
+      if let currentEtag = self.eventETag {
+        let components = currentEtag.componentsSeparatedByString("\"")
+        request.setValue("\u{0022}\(components[1])\u{0022}", forHTTPHeaderField: "If-None-Match")
+      }
+      
+      NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
         if error != nil {
           print("event error")
         } else {
           if let httpResponse = response as? NSHTTPURLResponse {
             switch httpResponse.statusCode {
-              case 200...299:
-                if let events = Event.parseJSONDataIntoEvents(data!) {
-                  completionHander(data: events, error: nil)
-                } else {
-                  print("no events")
-                }
-              default:
-               print("Response Error")
+            case 200...299:
+              self.eventETag = httpResponse.allHeaderFields["ETag"] as? String
+              
+              if let events = Event.parseJSONDataIntoEvents(data!) {
+                completionHander(events: events, error: nil)
+              } else {
+                print("no events")
+              }
+            case 304:
+              print("no changes")
+            default:
+              print("Response Error")
             }
           }
         }
-        
-      })
-      eventTask?.resume()
+      })!.resume()
+      
+      
+      
+      
+      // Configure ETag NSURLSessionConfiguration
+//      var eventSession: NSURLSession
+//      
+//      if let currentEtag = self.eventETag {
+//        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        configuration.HTTPAdditionalHeaders = ["If-None-Match": "\(currentEtag)"]
+//        eventSession = NSURLSession(configuration: configuration)
+//      } else {
+//        eventSession = NSURLSession.sharedSession()
+//      }
+//      
+//      //let eventURLString = "\(githubEventURL)access_token=\(token)"
+//      let eventURLString = "\(testEventURL)"
+//      let eventURL = NSURL(string: eventURLString)
+//      let eventTask = eventSession.dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in
+//        if error != nil {
+//          print("event error")
+//        } else {
+//          if let httpResponse = response as? NSHTTPURLResponse {
+//            switch httpResponse.statusCode {
+//              case 200...299:
+//                self.eventETag = httpResponse.allHeaderFields["ETag"] as? String
+//                
+//                if let events = Event.parseJSONDataIntoEvents(data!) {
+//                  completionHander(events: events, error: nil)
+//                } else {
+//                  print("no events")
+//                }
+//              case 304:
+//                print("no changes")
+//              default:
+//               print("Response Error")
+//            }
+//          }
+//        }
+//        
+//      })
+//      eventTask?.resume()
     }
     
   }

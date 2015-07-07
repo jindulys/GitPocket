@@ -6,15 +6,10 @@
 - investigate github login API
 
 **Notes**
-
 - github login
-
   reference to [github API V3](https://developer.github.com/guides/getting-started/)
 
-**TODO**
-
 - vc childViewControllers
-
   a lot of view controllers use a property **childViewControllers** what does that property used for?
 
 
@@ -30,7 +25,6 @@
 
 **Notes**
 - OAuth 2.0 flow
-
   **Site A** wants to access **User X's** information on **Site B**
   1. **Site A** registers with **Site B**, and obtains a **Secret** and an **ID**
   2. When **User X** tells **Site A** to access **Site B**, **User X** is sent to **Site B** where
@@ -40,7 +34,6 @@
   5. **Site A** then makes requests to **Site B** on behalf of **User X** by bundling the **Security Token** along with requests
 
 - Correctly configure your github Application
-
   1. on **Github Developer Page**(https://github.com/settings/developers) registers your app, remember your **clientID** and **clientSecret**, also set some strange redirectURL like *ilovelittlepolorbear://lollllo*
   2. on your Xcode Info.plist add an new item **URL Types** then add **URL Schema** as key and *ilovelittlepolorbear://lollllo* as value
   3. According to github auth(https://developer.github.com/v3/oauth/), use *https://github.com/login/oauth/authorize* with **clientID** and your redirectURL as parameter, then in your applicationdelegate's method:
@@ -52,6 +45,7 @@
 
   we use *application/x-www-form-urlencoded* for *Content-Type* in HTTPHeader
 
+
 # Day 3
 ## July 6, Monday
 
@@ -59,7 +53,6 @@
 - Create a **User** model to save a information about github user
 - Get **Event** feed
 - Show those feeds in a simple UITableView
-
 
 **TODO**
 - Since I use xcode 7.0 could not use pod, since most of pod files only support xcode 6.3 I couldn't use a better way to parse JSON
