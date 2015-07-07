@@ -127,7 +127,7 @@ class NetEngine {
       let request = NSMutableURLRequest(URL: NSURL(string: testEventURL)!)
       request.HTTPMethod = "GET"
       
-      
+      // Problem Here
       if let currentEtag = self.eventETag {
         let components = currentEtag.componentsSeparatedByString("\"")
         request.setValue("\u{0022}\(components[1])\u{0022}", forHTTPHeaderField: "If-None-Match")
