@@ -60,3 +60,9 @@
 - Add Etag to event request http header to avoid repeat request
 - Add PullToRefress
 - Learn how to use autoLayout in UITableViewCell
+
+# Day 4
+## July 7, Tuesday
+
+**Activities**
+- Figure out how does Alamofire work to make ETag Request success
