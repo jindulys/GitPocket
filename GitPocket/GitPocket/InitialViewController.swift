@@ -43,7 +43,7 @@ class InitialViewController: UIViewController {
         self.events = results
         //self.tableView!.reloadData()
         for event in results {
-          print(event.Description())
+          //print(event.Description())
         }
       }
       
@@ -59,10 +59,15 @@ class InitialViewController: UIViewController {
         self.events = results
         //self.tableView!.reloadData()
         for event in results {
-          print(event.Description())
+         // print(event.Description())
         }
       }
     })
+  }
+  
+  
+  func alamofireTestFunction() {
+    
   }
   
 }

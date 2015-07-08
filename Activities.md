@@ -66,3 +66,15 @@
 
 **Activities**
 - Figure out how does Alamofire work to make ETag Request success
+  It could be because of iOS SDK difference
+
+**Note**
+- Here is a syntax that avoid strong reference cycle in swift, I finally understand that
+
+      self.someClosure = { [weak self] someVariable in
+          // Note self is an optional, and may be nil
+          if let strongSelf = self {
+              strongSelf.doSomeFunction()
+          }
+      }
+ - After tried many times I find that Etag only work on iOS 8.3 not on iOS 9.0 NSURLDataSession, I don't know why.

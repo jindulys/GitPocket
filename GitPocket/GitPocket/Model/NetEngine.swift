@@ -130,8 +130,10 @@ class NetEngine {
       // Problem Here
       if let currentEtag = self.eventETag {
         let components = currentEtag.componentsSeparatedByString("\"")
-        request.setValue("\u{0022}\(components[1])\u{0022}", forHTTPHeaderField: "If-None-Match")
+        //request.setValue("\"\(components[1])\"", forHTTPHeaderField: "If-None-Match")
+        request.setValue("\"65c139f5dd959cbaa5a527db5014ed40\"", forHTTPHeaderField: "If-None-Match")
       }
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
       
       NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
         if error != nil {
