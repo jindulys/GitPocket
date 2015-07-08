@@ -84,3 +84,4 @@
 
 **Activities**
 - Figure out how Alamofire underlying thread mechanism
+   Finally understand it, could check this StackOverFlow question(http://stackoverflow.com/questions/31298485/how-alamofire-could-guarantee-response-method-would-be-called-after-get-all-the)
