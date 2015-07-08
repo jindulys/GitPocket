@@ -78,3 +78,9 @@
           }
       }
  - After tried many times I find that Etag only work on iOS 8.3 not on iOS 9.0 NSURLDataSession, I don't know why.
+
+# Day 5
+## July 8, Wednesday
+
+**Activities**
+- Figure out how Alamofire underlying thread mechanism
