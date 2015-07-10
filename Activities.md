@@ -91,3 +91,12 @@
    Another post [AFNetworking Analysis](http://zhangbuhuai.com/2015/04/05/AFNetworking使用笔记2/)
 
  - Learn some stuff about **RUNLOOP**
+
+# Day 6
+## July 9, Thursday
+
+**Activities**
+- Reading something related to **UITableView**, and preparing to implement my github feed tableview and cell with best practice
+   Resources I referred to:
+
+   1. [forkingDog/UITableView-FDTemplateLayoutCell](https://github.com/forkingdog/UITableView-FDTemplateLayoutCell)
