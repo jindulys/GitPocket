@@ -100,3 +100,9 @@
    Resources I referred to:
 
    1. [forkingDog/UITableView-FDTemplateLayoutCell](https://github.com/forkingdog/UITableView-FDTemplateLayoutCell)
+
+# Day 7
+## July 11, Saturday
+
+**Activities**
+- Continuing understand forkingDog's code
