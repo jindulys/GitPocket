@@ -109,3 +109,9 @@
 
 **AutoLayout Study 1.0**
 One problem that could meet during using **AutoLayout** is a problem related to **UILabel**, for example **UILabel** has an property called **preferedMaxLayoutWidth**, which determined when you could break the line when mulitple lines modes on. So **UILabel** should know the width of its superview, however to get the width of its superview, it should know the width of its childview, so it is a problem.
+
+# Day 8
+## July 13, Monday
+
+**Note**
+The first day worked at ZeMind, this night just have some rest, we will have no coding.
