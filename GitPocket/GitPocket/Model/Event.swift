@@ -17,6 +17,7 @@ class Event {
     case WatchEvent = "WatchEvent"
     case FollowEvent = "FollowEvent"
     case ForkEvent = "ForkEvent"
+    case MemberEvent = "MemberEvent"
     
     init?(event:String) {
       switch event {
@@ -30,6 +31,8 @@ class Event {
           self = .FollowEvent
         case "ForkEvent":
           self = .ForkEvent
+        case "MemberEvent":
+          self = .MemberEvent
         default:
           return nil
       }

@@ -36,40 +36,21 @@ class InitialViewController: UIViewController {
     
     let button = UIBarButtonItem(title: "Continue", style: .Plain, target: self, action: "sayHello:")
     self.navigationItem.leftBarButtonItem = button
-    
-    // Test events
-    self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
-      if let results = events {
-        self.events = results
-        //self.tableView!.reloadData()
-        for event in results {
-          //print(event.Description())
-        }
-      }
-      
-    })
+
   }
   
   func sayHello(sender: UIBarButtonItem) {
     print("Just A say hello")
-    
-    
     self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
       if let results = events {
         self.events = results
         //self.tableView!.reloadData()
         for event in results {
-         // print(event.Description())
+          print(event.Description())
         }
       }
     })
   }
-  
-  
-  func alamofireTestFunction() {
-    
-  }
-  
 }
 
 

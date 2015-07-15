@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+
 class NetEngine {
   let clientID = "bf39a01edfbf0035cb42"
   let clientSecret = "fd9c0462e830bc6936a217975b024e703d32adc0"
@@ -118,52 +120,11 @@ class NetEngine {
   // Totally test
   func requestEventWithCompletionHandler(completionHander:(events:[Event]?, error:NSError?)-> Void) {
     // Method1 use access_token
-    
-    
     if let token = self.token {
-      
-      // Another Try
-      // generate request
-      let request = NSMutableURLRequest(URL: NSURL(string: testEventURL)!)
-      request.HTTPMethod = "GET"
-      
-      // Problem Here
-      if let currentEtag = self.eventETag {
-        let components = currentEtag.componentsSeparatedByString("\"")
-        //request.setValue("\"\(components[1])\"", forHTTPHeaderField: "If-None-Match")
-        request.setValue("\"65c139f5dd959cbaa5a527db5014ed40\"", forHTTPHeaderField: "If-None-Match")
-      }
-      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      
-      NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-        if error != nil {
-          print("event error")
-        } else {
-          if let httpResponse = response as? NSHTTPURLResponse {
-            switch httpResponse.statusCode {
-            case 200...299:
-              self.eventETag = httpResponse.allHeaderFields["ETag"] as? String
-              
-              if let events = Event.parseJSONDataIntoEvents(data!) {
-                completionHander(events: events, error: nil)
-              } else {
-                print("no events")
-              }
-            case 304:
-              print("no changes")
-            default:
-              print("Response Error")
-            }
-          }
-        }
-      })!.resume()
-      
-      
-      
-      
       // Configure ETag NSURLSessionConfiguration
-//      var eventSession: NSURLSession
-//      
+      var eventSession: NSURLSession
+      
+// TODO: Here we could not use Etag
 //      if let currentEtag = self.eventETag {
 //        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
 //        configuration.HTTPAdditionalHeaders = ["If-None-Match": "\(currentEtag)"]
@@ -171,34 +132,36 @@ class NetEngine {
 //      } else {
 //        eventSession = NSURLSession.sharedSession()
 //      }
-//      
-//      //let eventURLString = "\(githubEventURL)access_token=\(token)"
-//      let eventURLString = "\(testEventURL)"
-//      let eventURL = NSURL(string: eventURLString)
-//      let eventTask = eventSession.dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in
-//        if error != nil {
-//          print("event error")
-//        } else {
-//          if let httpResponse = response as? NSHTTPURLResponse {
-//            switch httpResponse.statusCode {
-//              case 200...299:
-//                self.eventETag = httpResponse.allHeaderFields["ETag"] as? String
-//                
-//                if let events = Event.parseJSONDataIntoEvents(data!) {
-//                  completionHander(events: events, error: nil)
-//                } else {
-//                  print("no events")
-//                }
-//              case 304:
-//                print("no changes")
-//              default:
-//               print("Response Error")
-//            }
-//          }
-//        }
-//        
-//      })
-//      eventTask?.resume()
+      
+      eventSession = NSURLSession.sharedSession()
+      
+      let eventURLString = "\(githubEventURL)access_token=\(token)"
+      //let eventURLString = "\(testEventURL)"
+      let eventURL = NSURL(string: eventURLString)
+      let eventTask = eventSession.dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in
+        if error != nil {
+          print("event error")
+        } else {
+          if let httpResponse = response as? NSHTTPURLResponse {
+            switch httpResponse.statusCode {
+              case 200...299:
+                self.eventETag = httpResponse.allHeaderFields["ETag"] as? String
+                
+                if let events = Event.parseJSONDataIntoEvents(data!) {
+                  completionHander(events: events, error: nil)
+                } else {
+                  print("no events")
+                }
+              case 304:
+                print("no changes")
+              default:
+               print("Response Error")
+            }
+          }
+        }
+        
+      })
+      eventTask?.resume()
     }
     
   }
