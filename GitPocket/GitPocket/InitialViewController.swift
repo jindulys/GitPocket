@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class InitialViewController: UIViewController {
-  
-  @IBOutlet weak var tableView: UITableView!
+  var tableView: UITableView = UITableView()
   var netEngine: NetEngine?
   var events: [Event]?
   
@@ -19,6 +18,7 @@ class InitialViewController: UIViewController {
     super.viewDidLoad()
     self.navigationItem.title = "User"
     
+    // Set NetEngine
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     self.netEngine = appDelegate.netEngine
     
@@ -28,15 +28,23 @@ class InitialViewController: UIViewController {
     }
     
     self.netEngine?.token = token
-    self.tableView!.delegate = self
-    self.tableView!.dataSource = self
-    print(token)
+    
+    // Setup subviews
+    self.view.addSubview(self.tableView)
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
+    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     
     // add refresh button
-    
     let button = UIBarButtonItem(title: "Continue", style: .Plain, target: self, action: "sayHello:")
     self.navigationItem.leftBarButtonItem = button
-
+    
+    // Setup constraints
+    self.tableView.translatesAutoresizingMaskIntoConstraints = false
+    let views: NSDictionary = ["tableView": self.tableView]
+    self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views as! [String : AnyObject]))
+    
+    self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views as! [String : AnyObject]))
   }
   
   func sayHello(sender: UIBarButtonItem) {
@@ -44,10 +52,7 @@ class InitialViewController: UIViewController {
     self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
       if let results = events {
         self.events = results
-        //self.tableView!.reloadData()
-        for event in results {
-          print(event.Description())
-        }
+        self.tableView.reloadData()
       }
     })
   }
@@ -55,8 +60,9 @@ class InitialViewController: UIViewController {
 
 
 extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("testCell") as UITableViewCell!
+    let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
     if let events = self.events {
       cell.textLabel?.text = events[indexPath.row].Description()
     }
@@ -66,7 +72,8 @@ extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let events = self.events {
       return events.count
+    } else {
+      return 0
     }
-    return 0
   }
 }
