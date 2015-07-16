@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */; };
 		0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BABE1B484654007C3EB4 /* AppDelegate.swift */; };
 		0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAC01B484654007C3EB4 /* ViewController.swift */; };
 		0E83BAC41B484654007C3EB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E83BAC21B484654007C3EB4 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GithubFeedCell.swift; path = View/GithubFeedCell.swift; sourceTree = "<group>"; };
 		0E83BABB1B484654007C3EB4 /* GitPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BABE1B484654007C3EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E83BAC01B484654007C3EB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E3816DF1B5756A000D6DAFE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		0E83BAB21B484654007C3EB4 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		0E83BABD1B484654007C3EB4 /* GitPocket */ = {
 			isa = PBXGroup;
 			children = (
+				0E3816DF1B5756A000D6DAFE /* View */,
 				0EAD6A911B49CA2D00332CA7 /* Models */,
 				0E83BABE1B484654007C3EB4 /* AppDelegate.swift */,
 				0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */,
@@ -288,6 +299,7 @@
 				0EAD6A991B4AC45200332CA7 /* User.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
 				0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */,
+				0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
