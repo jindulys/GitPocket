@@ -33,6 +33,7 @@ class InitialViewController: UIViewController {
     self.view.addSubview(self.tableView)
     self.tableView.delegate = self
     self.tableView.dataSource = self
+    self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0)
     self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     
     // add refresh button
