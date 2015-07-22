@@ -34,7 +34,9 @@ class InitialViewController: UIViewController {
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0)
-    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    self.tableView.registerClass(GithubFeedCell.self, forCellReuseIdentifier: "GithubFeedCell")
+    self.tableView.rowHeight = UITableViewAutomaticDimension
+    self.tableView.estimatedRowHeight = 90
     
     // add refresh button
     let button = UIBarButtonItem(title: "Continue", style: .Plain, target: self, action: "sayHello:")
@@ -46,10 +48,11 @@ class InitialViewController: UIViewController {
     self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views as! [String : AnyObject]))
     
     self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views as! [String : AnyObject]))
+    
+    //self.view.le
   }
   
   func sayHello(sender: UIBarButtonItem) {
-    print("Just A say hello")
     self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
       if let results = events {
         self.events = results
@@ -63,9 +66,9 @@ class InitialViewController: UIViewController {
 extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
+    let cell = tableView.dequeueReusableCellWithIdentifier("GithubFeedCell") as! GithubFeedCell
     if let events = self.events {
-      cell.textLabel?.text = events[indexPath.row].Description()
+      cell.configureCellWithConfigureBlock(events[indexPath.row])
     }
     return cell
   }

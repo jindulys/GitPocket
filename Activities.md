@@ -115,3 +115,9 @@ One problem that could meet during using **AutoLayout** is a problem related to 
 
 **Note**
 The first day worked at ZeMind, this night just have some rest, we will have no coding.
+
+# Day 9
+## July 21, Tuesday
+
+**Activities**
+- Creating GitHubFeedCell, with iOS 9 autolayout features, auto resizing uitableviewcell finished, debug with autolayout constraints' identifier is so easy

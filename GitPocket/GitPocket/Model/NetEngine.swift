@@ -148,7 +148,9 @@ class NetEngine {
                 self.eventETag = httpResponse.allHeaderFields["ETag"] as? String
                 
                 if let events = Event.parseJSONDataIntoEvents(data!) {
-                  completionHander(events: events, error: nil)
+                  dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completionHander(events: events, error: nil)
+                  })
                 } else {
                   print("no events")
                 }
