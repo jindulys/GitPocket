@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 
+@available(iOS 9.0, *)
 class GithubFeedCell: UITableViewCell
 {
   var avatarView: UIImageView = UIImageView()
   var userNameLabel: UILabel = UILabel()
   var actionLabel: UILabel = UILabel()
   var clientLabel: UILabel = UILabel()
+  var actorStackView: UIStackView = UIStackView()
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,6 +84,18 @@ class GithubFeedCell: UITableViewCell
     
     setupLabel(clientLabel, 0, .ByWordWrapping)
     
+    // create a stackview for userNameLabel and avatarview
+    actorStackView.translatesAutoresizingMaskIntoConstraints = false
+    actorStackView.addArrangedSubview(avatarView)
+    actorStackView.addArrangedSubview(userNameLabel)
+    
+    actorStackView.axis = .Horizontal
+    actorStackView.alignment = .Center
+    actorStackView.distribution = .FillProportionally
+    actorStackView.spacing = 38.0
+    actorStackView.layoutMarginsRelativeArrangement = true
+    self.contentView.addSubview(actorStackView)
+    
     // Setup Constraints
     createConstraints()
   }
@@ -89,55 +103,38 @@ class GithubFeedCell: UITableViewCell
   func createConstraints() {
     let contentView = self.contentView
     
-    if #available(iOS 9.0, *) {
+    // actor stack view constraints
+    let actorSVLeadingConstraint = actorStackView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 10.0)
+    actorSVLeadingConstraint.identifier = "actorSVLeadingConstraint"
+    let actorSVTrailingConstraint = actorStackView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -15.0)
+    actorSVTrailingConstraint.identifier = "actorSVTrailingConstraint"
+    let actorSVTopConstraint = actorStackView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 6.0)
+    actorSVTopConstraint.identifier = "actorSVTopConstraint"
+    
+    // Avatar Constraints
+    let avatarWidthConstraint = avatarView.widthAnchor.constraintEqualToConstant(60)
+    avatarWidthConstraint.identifier = "avatarWidthConstraint"
+    let avatarHeightConstraint = avatarView.heightAnchor.constraintEqualToConstant(60.0)
+    avatarHeightConstraint.identifier = "avatarHeightConstraint"
+    // Action Label Constraints
+    let actionLeadingConstraint = actionLabel.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 15.0)
+    actionLeadingConstraint.identifier = "actionLeadingConstraint"
+    let actionTopConstraint = actionLabel.topAnchor.constraintEqualToAnchor(actorStackView.bottomAnchor, constant: 10.0)
+    actionTopConstraint.identifier = "actionTopConstraint"
+    let actionTrailingConstraint = actionLabel.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -15.0)
+    actionTrailingConstraint.identifier = "actionTrailingConstraint"
       
-        // Avatar Constraints
-        let avatarLeadingConstraint = avatarView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 10.0)
-        avatarLeadingConstraint.identifier = "avatarLeadingConstraint"
-        let avatarWidthConstraint = avatarView.widthAnchor.constraintEqualToConstant(60)
-        avatarWidthConstraint.identifier = "avatarWidthConstraint"
-        let avatarHeightConstraint = avatarView.heightAnchor.constraintEqualToConstant(60.0)
-        avatarHeightConstraint.identifier = "avatarHeightConstraint"
-        // To avoid unsatisfied constraints
-        // http://stackoverflow.com/questions/25059443/what-is-nslayoutconstraint-uiview-encapsulated-layout-height-and-how-should-i
-        avatarHeightConstraint.priority = 999
-        let avatarTopConstraint = avatarView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 10.0)
-        avatarTopConstraint.identifier = "avatarTopConstraint"
-      
-        // Username Label Constraints
-        let usernameLeadingConstraint = userNameLabel.leadingAnchor.constraintEqualToAnchor(avatarView.trailingAnchor, constant: 15.0)
-        usernameLeadingConstraint.identifier = "usernameLeadingConstraint"
-        let usernameCenterXConstraint = userNameLabel.centerYAnchor.constraintEqualToAnchor(avatarView.centerYAnchor)
-        usernameCenterXConstraint.identifier = "usernameCenterXConstraint"
-        let usernameTrailingConstraint = userNameLabel.trailingAnchor.constraintLessThanOrEqualToAnchor(contentView.trailingAnchor, constant: -15.0)
-        usernameTrailingConstraint.identifier = "usernameTrailingConstraint"
-        let usernameHeightConstraint = userNameLabel.heightAnchor.constraintGreaterThanOrEqualToAnchor(avatarView.heightAnchor)
-        usernameHeightConstraint.identifier = "usernameHeightConstraint"
-      
-        // Action Label Constraints
-        let actionLeadingConstraint = actionLabel.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 15.0)
-        actionLeadingConstraint.identifier = "actionLeadingConstraint"
-        let actionTopConstraint = actionLabel.topAnchor.constraintEqualToAnchor(avatarView.bottomAnchor, constant: 10.0)
-        actionTopConstraint.identifier = "actionTopConstraint"
-        let actionTrailingConstraint = actionLabel.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -15.0)
-        actionTrailingConstraint.identifier = "actionTrailingConstraint"
-      
-        // Client Label Constraints 
-        let clientLeadingConstraint = clientLabel.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 15.0)
-        clientLeadingConstraint.identifier = "clientLeadingConstraint"
-        let clientTrailingConstraint = clientLabel.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -15.0)
-        clientTrailingConstraint.identifier = "clientTrailingConstraint"
-        let clientBottomConstraint = clientLabel.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -10.0)
-        clientBottomConstraint.identifier = "clientBottomConstraint"
-        let clientTopConstraint = clientLabel.topAnchor.constraintEqualToAnchor(actionLabel.bottomAnchor, constant: 10.0)
-        clientTopConstraint.identifier = "clientTopConstraint"
-      
-        NSLayoutConstraint.activateConstraints([avatarLeadingConstraint, avatarWidthConstraint, avatarHeightConstraint, avatarTopConstraint, usernameLeadingConstraint, usernameTrailingConstraint, usernameCenterXConstraint, usernameHeightConstraint, actionLeadingConstraint, actionTopConstraint, actionTrailingConstraint, clientLeadingConstraint, clientTrailingConstraint, clientBottomConstraint, clientTopConstraint])
-      
-    } else {
-        // Fallback on earlier versions
-      print("some stuff")
-    }
+    // Client Label Constraints
+    let clientLeadingConstraint = clientLabel.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 15.0)
+    clientLeadingConstraint.identifier = "clientLeadingConstraint"
+    let clientTrailingConstraint = clientLabel.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -15.0)
+    clientTrailingConstraint.identifier = "clientTrailingConstraint"
+    let clientBottomConstraint = clientLabel.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -10.0)
+    clientBottomConstraint.identifier = "clientBottomConstraint"
+    let clientTopConstraint = clientLabel.topAnchor.constraintEqualToAnchor(actionLabel.bottomAnchor, constant: 10.0)
+    clientTopConstraint.identifier = "clientTopConstraint"
+    
+    NSLayoutConstraint.activateConstraints([actorSVLeadingConstraint, actorSVTrailingConstraint, actorSVTopConstraint, avatarWidthConstraint, avatarHeightConstraint, actionLeadingConstraint, actionTopConstraint, actionTrailingConstraint, clientLeadingConstraint, clientTrailingConstraint, clientBottomConstraint, clientTopConstraint])
   }
 }
 

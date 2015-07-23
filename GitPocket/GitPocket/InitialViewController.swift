@@ -34,7 +34,11 @@ class InitialViewController: UIViewController {
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0)
-    self.tableView.registerClass(GithubFeedCell.self, forCellReuseIdentifier: "GithubFeedCell")
+    if #available(iOS 9.0, *) {
+        self.tableView.registerClass(GithubFeedCell.self, forCellReuseIdentifier: "GithubFeedCell")
+    } else {
+        // Fallback on earlier versions
+    }
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.estimatedRowHeight = 90
     
@@ -66,11 +70,18 @@ class InitialViewController: UIViewController {
 extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("GithubFeedCell") as! GithubFeedCell
-    if let events = self.events {
-      cell.configureCellWithConfigureBlock(events[indexPath.row])
+    if #available(iOS 9.0, *) {
+      let cell = tableView.dequeueReusableCellWithIdentifier("GithubFeedCell") as! GithubFeedCell
+      if let events = self.events {
+        cell.configureCellWithConfigureBlock(events[indexPath.row])
+      }
+      return cell
+    } else {
+        // Fallback on earlier versions
+      let cell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+      return cell
     }
-    return cell
+    
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

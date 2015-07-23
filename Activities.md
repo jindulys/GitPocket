@@ -121,3 +121,7 @@ The first day worked at ZeMind, this night just have some rest, we will have no 
 
 **Activities**
 - Creating GitHubFeedCell, with iOS 9 autolayout features, auto resizing uitableviewcell finished, debug with autolayout constraints' identifier is so easy
+
+**TODO**
+- Adding Pagination [Github Pagination](https://developer.github.com/v3/#pagination)
+- Adding some interesting pull to refresh
