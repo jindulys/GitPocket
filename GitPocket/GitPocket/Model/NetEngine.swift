@@ -187,6 +187,12 @@ protocol ImageCache: NSObjectProtocol {
   }
 }
 
+enum State {
+  case Ready
+  case Running
+  case Suspended
+}
+
 class Manager {
   let session: NSURLSession
   let cache: ImageCache
@@ -206,6 +212,28 @@ class Manager {
     session = NSURLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
     self.cache = cache
   }
+  
+  var state: State {
+    var status: State = .Ready
+    
+    for loader: Loader in delegate.loaders.values {
+      switch loader.state {
+        case .Running:
+          status = .Running
+        case .Suspended:
+          if status == .Ready {
+            status = .Suspended
+          }
+        default:
+          break
+      }
+    }
+    
+    return status
+  }
+  
+  // MARK: loading
+  
   
   class SessionDataDelegate: NSObject, NSURLSessionDataDelegate {
     let _queue = dispatch_queue_create(nil, DISPATCH_QUEUE_CONCURRENT)
