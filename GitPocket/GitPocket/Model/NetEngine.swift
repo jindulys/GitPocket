@@ -165,6 +165,182 @@ class NetEngine {
       })
       eventTask?.resume()
     }
-    
   }
+}
+
+/** Learn how to better wrapping basic objects
+*   Reference https://github.com/hirohisa/ImageLoaderSwift
+*/
+typealias CompletionHandler = (NSURL, UIImage?, NSError?) -> ()
+
+class Block: NSObject {
+  let completionHandler: CompletionHandler
+  init(completionHandler:CompletionHandler) {
+    self.completionHandler = completionHandler
+  }
+}
+
+protocol ImageCache: NSObjectProtocol {
+  subscript(aKey: NSURL) -> UIImage? {
+    get
+    set
+  }
+}
+
+class Manager {
+  let session: NSURLSession
+  let cache: ImageCache
+  let delegate: SessionDataDelegate = SessionDataDelegate()
+  
+  let decompressingQueue = dispatch_queue_create(nil, DISPATCH_QUEUE_CONCURRENT)
+  // overridable computed properties
+  class var sharedInstance: Manager {
+    struct Singleton {
+      static let instance = Manager()
+    }
+    
+    return Singleton.instance
+  }
+  
+  init(configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration(), cache: ImageCache = DiskCached()) {
+    session = NSURLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+    self.cache = cache
+  }
+  
+  class SessionDataDelegate: NSObject, NSURLSessionDataDelegate {
+    let _queue = dispatch_queue_create(nil, DISPATCH_QUEUE_CONCURRENT)
+    var loaders: [NSURL: Loader] = [NSURL: Loader]()
+    
+    subscript(URL: NSURL) -> Loader? {
+      get {
+        var loader: Loader?
+        dispatch_sync(_queue) {
+          loader = self.loaders[URL]
+        }
+        return loader
+      }
+      
+      set {
+        dispatch_barrier_async(_queue) {
+          self.loaders[URL] = newValue!
+        }
+      }
+    }
+    
+    func remove(URL: NSURL) -> Loader? {
+      if let loader = self[URL] {
+        loaders.removeValueForKey(URL)
+        return loader
+      }
+      
+      return nil
+    }
+    
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+      if let URL = dataTask.originalRequest?.URL, let loader = self[URL] {
+        loader.receive(data)
+      }
+    }
+    
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+      completionHandler(.Allow)
+    }
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+      if let URL = task.originalRequest?.URL, let loader = self[URL] {
+        loader.complete(error)
+      }
+    }
+  }
+  
+}
+
+class Loader {
+  unowned let delegate: Manager
+  let task: NSURLSessionDataTask
+  var receivedData: NSMutableData = NSMutableData()
+  var blocks: [Block] = []
+  
+  var state: NSURLSessionTaskState {
+    return task.state
+  }
+  
+  init(task: NSURLSessionDataTask, delegate: Manager) {
+    self.task = task
+    self.delegate = delegate
+    self.resume()
+  }
+  
+  func completionHandler(completionHandler:CompletionHandler) -> Self {
+    let block = Block(completionHandler: completionHandler)
+    blocks.append(block)
+    
+    return self
+  }
+  
+  func suspend() {
+    task.suspend()
+  }
+  
+  func resume() {
+    task.resume()
+  }
+  
+  func cancel() {
+    task.cancel()
+  }
+  
+  func remove(block: Block) {
+    var newBlocks: [Block] = []
+    for b:Block in blocks {
+      if !b.isEqual(block) {
+        newBlocks.append(b)
+      }
+    }
+    
+    blocks = newBlocks
+  }
+  
+  func receive(data: NSData) {
+    receivedData.appendData(data)
+  }
+  
+  func complete(error: NSError?) {
+    if let URL = task.originalRequest?.URL {
+      if let error = error {
+        failure(URL, error: error)
+        return
+      }
+      
+      dispatch_async(delegate.decompressingQueue) {
+        self.success(URL, data: self.receivedData)
+      }
+    }
+  }
+  
+  func success(URL: NSURL, data: NSData) {
+    let image = UIImage(data: data)
+    _toCache(URL, image: image)
+    
+    for block: Block in blocks {
+      block.completionHandler(URL, image, nil)
+    }
+    
+    blocks = []
+  }
+  
+  func failure(URL: NSURL, error:NSError) {
+    for block: Block in blocks {
+      block.completionHandler(URL, nil, error)
+    }
+    blocks = []
+  }
+  
+  func _toCache(URL: NSURL, image _image: UIImage?) {
+    let image = _image
+    if let image = image {
+      delegate.cache[URL] = image
+    }
+  }
+  
 }
