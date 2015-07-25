@@ -18,6 +18,9 @@ class InitialViewController: UIViewController {
     super.viewDidLoad()
     self.navigationItem.title = "User"
     
+    // Add observer
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadView", name: kGitPocketSuccessfullyGetTokenKey, object: nil)
+    
     // Set NetEngine
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     self.netEngine = appDelegate.netEngine
@@ -30,14 +33,19 @@ class InitialViewController: UIViewController {
     self.netEngine?.token = token
     
     // Setup subviews
+    
+    setupViews()
+  }
+  
+  func setupViews() {
     self.view.addSubview(self.tableView)
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0)
     if #available(iOS 9.0, *) {
-        self.tableView.registerClass(GithubFeedCell.self, forCellReuseIdentifier: "GithubFeedCell")
+      self.tableView.registerClass(GithubFeedCell.self, forCellReuseIdentifier: "GithubFeedCell")
     } else {
-        // Fallback on earlier versions
+      // Fallback on earlier versions
     }
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.estimatedRowHeight = 90
@@ -52,8 +60,12 @@ class InitialViewController: UIViewController {
     self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views as! [String : AnyObject]))
     
     self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options:NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views as! [String : AnyObject]))
-    
-    //self.view.le
+  }
+  
+  func reloadView() {
+    print("finish token getting")
+    setupViews()
+    self.view.setNeedsLayout()
   }
   
   func sayHello(sender: UIBarButtonItem) {

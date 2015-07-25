@@ -75,8 +75,10 @@ class NetEngine {
                   if isToken {
                     NSUserDefaults.standardUserDefaults().setObject(item, forKey: "Token")
                     NSUserDefaults.standardUserDefaults().synchronize()
-                    
                     self.token = item
+                    dispatch_async(dispatch_get_main_queue()){
+                      NSNotificationCenter.defaultCenter().postNotificationName(kGitPocketSuccessfullyGetTokenKey, object: nil)
+                    }
                     self.requestAuthenticatedUser()
                   }
                   

@@ -22,6 +22,7 @@
 		0EAD6A951B49CBD000332CA7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */; };
 		0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A961B49D69D00332CA7 /* NetEngine.swift */; };
 		0EAD6A991B4AC45200332CA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A981B4AC45200332CA7 /* User.swift */; };
+		0EC7AF501B63CB7000EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF4F1B63CB7000EB9F6E /* PocketHelper.swift */; };
 		0ED1BA8B1B61DCE000245A90 /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1BA8A1B61DCE000245A90 /* DiskCached.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		0EAD6A961B49D69D00332CA7 /* NetEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetEngine.swift; path = Model/NetEngine.swift; sourceTree = "<group>"; };
 		0EAD6A981B4AC45200332CA7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0EC7AF4F1B63CB7000EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketHelper.swift; sourceTree = "<group>"; };
 		0ED1BA8A1B61DCE000245A90 /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCached.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				0ED1BA8A1B61DCE000245A90 /* DiskCached.swift */,
+				0EC7AF4F1B63CB7000EB9F6E /* PocketHelper.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				0E9BEB8C1B4AF2A20081CB0D /* Event.swift in Sources */,
 				0E9BEB8A1B4AF1020081CB0D /* Repo.swift in Sources */,
 				0ED1BA8B1B61DCE000245A90 /* DiskCached.swift in Sources */,
+				0EC7AF501B63CB7000EB9F6E /* PocketHelper.swift in Sources */,
 				0EAD6A951B49CBD000332CA7 /* InitialViewController.swift in Sources */,
 				0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */,
 				0EAD6A991B4AC45200332CA7 /* User.swift in Sources */,
