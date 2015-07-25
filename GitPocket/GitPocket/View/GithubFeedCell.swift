@@ -33,9 +33,9 @@ class GithubFeedCell: UITableViewCell
   
   func configureCellWithConfigureBlock(event:Event) {
     // avatar view
-//    let avatarURL = NSURL(string: (event.actor?.avatarURL)!)
-//    let data = NSData(contentsOfURL: avatarURL!)
-//    self.avatarView.image = UIImage(data: data!)
+    let avatarURL = NSURL(string: (event.actor?.avatarURL)!)
+    //let data = NSData(contentsOfURL: avatarURL!)
+    self.avatarView.load(avatarURL!)
     
     // user name
     self.userNameLabel.text = event.actor?.userName

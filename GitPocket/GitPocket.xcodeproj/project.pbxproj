@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0C3B7B1B6338D5005C6D66 /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C3B7A1B6338D5005C6D66 /* UIImageView+ImageLoader.swift */; };
 		0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */; };
 		0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BABE1B484654007C3EB4 /* AppDelegate.swift */; };
 		0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAC01B484654007C3EB4 /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E0C3B7A1B6338D5005C6D66 /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GithubFeedCell.swift; path = View/GithubFeedCell.swift; sourceTree = "<group>"; };
 		0E83BABB1B484654007C3EB4 /* GitPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BABE1B484654007C3EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0C3B791B6338AA005C6D66 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E0C3B7A1B6338D5005C6D66 /* UIImageView+ImageLoader.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		0E3816DF1B5756A000D6DAFE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +131,7 @@
 		0E83BABD1B484654007C3EB4 /* GitPocket */ = {
 			isa = PBXGroup;
 			children = (
+				0E0C3B791B6338AA005C6D66 /* Extensions */,
 				0ED1BA891B61DC9500245A90 /* Utilities */,
 				0E3816DF1B5756A000D6DAFE /* View */,
 				0EAD6A911B49CA2D00332CA7 /* Models */,
@@ -313,6 +324,7 @@
 				0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */,
 				0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
+				0E0C3B7B1B6338D5005C6D66 /* UIImageView+ImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
