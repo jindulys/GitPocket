@@ -173,6 +173,26 @@ class NetEngine {
 */
 typealias CompletionHandler = (NSURL, UIImage?, NSError?) -> ()
 
+protocol URLLiteralConvertible {
+  var URL: NSURL { get }
+}
+
+extension NSURL: URLLiteralConvertible {
+  var URL: NSURL {
+    return self
+  }
+}
+
+extension String: URLLiteralConvertible {
+  var URL: NSURL {
+    if let string = stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
+      return NSURL(string: string)!
+    }
+    
+    return NSURL(string: self)!
+  }
+}
+
 class Block: NSObject {
   let completionHandler: CompletionHandler
   init(completionHandler:CompletionHandler) {
@@ -233,6 +253,52 @@ class Manager {
   }
   
   // MARK: loading
+  func load(URL: URLLiteralConvertible) -> Loader {
+    let URL = URL.URL
+    if let loader = delegate[URL] {
+      loader.resume()
+      return loader
+    }
+    
+    let request = NSMutableURLRequest(URL: URL)
+    request.setValue("image/*", forHTTPHeaderField: "Accept")
+    let task = session.dataTaskWithRequest(request)
+    
+    let loader = Loader(task: task!, delegate: self)
+    delegate[URL] = loader
+    return loader
+  }
+  
+  func suspend(URL: URLLiteralConvertible) -> Loader? {
+    let URL = URL.URL
+    
+    if let loader = delegate[URL] {
+      loader.suspend()
+      return loader
+    }
+    
+    return nil
+  }
+  
+  func cancel(URL: URLLiteralConvertible, block: Block? = nil) -> Loader? {
+    let URL = URL.URL
+    
+    if let loader = delegate[URL] {
+      
+      if let block = block {
+        loader.remove(block)
+      }
+      
+      if loader.blocks.count == 0 || block == nil {
+        loader.cancel()
+        delegate.remove(URL)
+      }
+      
+      return loader
+    }
+    
+    return nil
+  }
   
   
   class SessionDataDelegate: NSObject, NSURLSessionDataDelegate {
@@ -370,5 +436,26 @@ class Loader {
       delegate.cache[URL] = image
     }
   }
+}
+
+func load(URL: URLLiteralConvertible) -> Loader {
+  return Manager.sharedInstance.load(URL)
+}
+
+func suspend(URL: URLLiteralConvertible) -> Loader? {
+  return Manager.sharedInstance.suspend(URL)
+}
+
+func cancel(URL: URLLiteralConvertible) -> Loader? {
+  return Manager.sharedInstance.cancel(URL)
+}
+
+func cache(URL: URLLiteralConvertible) -> UIImage? {
+  let mURL = URL.URL
   
+  return Manager.sharedInstance.cache[mURL]
+}
+
+var state: State {
+  return Manager.sharedInstance.state
 }
