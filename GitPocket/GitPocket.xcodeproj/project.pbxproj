@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E0C3B7B1B6338D5005C6D66 /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C3B7A1B6338D5005C6D66 /* UIImageView+ImageLoader.swift */; };
 		0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */; };
 		0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BABE1B484654007C3EB4 /* AppDelegate.swift */; };
 		0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAC01B484654007C3EB4 /* ViewController.swift */; };
@@ -21,9 +20,10 @@
 		0E9BEB8C1B4AF2A20081CB0D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BEB8B1B4AF2A20081CB0D /* Event.swift */; };
 		0EAD6A951B49CBD000332CA7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */; };
 		0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A961B49D69D00332CA7 /* NetEngine.swift */; };
-		0EAD6A991B4AC45200332CA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A981B4AC45200332CA7 /* User.swift */; };
-		0EC7AF501B63CB7000EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF4F1B63CB7000EB9F6E /* PocketHelper.swift */; };
-		0ED1BA8B1B61DCE000245A90 /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1BA8A1B61DCE000245A90 /* DiskCached.swift */; };
+		0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */; };
+		0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; };
+		0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
+		0EC7AF581B63E19A00EB9F6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF571B63E19A00EB9F6E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E0C3B7A1B6338D5005C6D66 /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GithubFeedCell.swift; path = View/GithubFeedCell.swift; sourceTree = "<group>"; };
 		0E83BABB1B484654007C3EB4 /* GitPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BABE1B484654007C3EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,9 +63,10 @@
 		0E9BEB8B1B4AF2A20081CB0D /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
 		0EAD6A941B49CBD000332CA7 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		0EAD6A961B49D69D00332CA7 /* NetEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetEngine.swift; path = Model/NetEngine.swift; sourceTree = "<group>"; };
-		0EAD6A981B4AC45200332CA7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0EC7AF4F1B63CB7000EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketHelper.swift; sourceTree = "<group>"; };
-		0ED1BA8A1B61DCE000245A90 /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCached.swift; sourceTree = "<group>"; };
+		0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+ImageLoader.swift"; path = "Extensions/UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
+		0EC7AF531B63E17300EB9F6E /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCached.swift; path = Utilities/DiskCached.swift; sourceTree = "<group>"; };
+		0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketHelper.swift; path = Utilities/PocketHelper.swift; sourceTree = "<group>"; };
+		0EC7AF571B63E19A00EB9F6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +97,7 @@
 		0E0C3B791B6338AA005C6D66 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0E0C3B7A1B6338D5005C6D66 /* UIImageView+ImageLoader.swift */,
+				0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -170,8 +170,8 @@
 		0EAD6A911B49CA2D00332CA7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0EC7AF571B63E19A00EB9F6E /* User.swift */,
 				0EAD6A961B49D69D00332CA7 /* NetEngine.swift */,
-				0EAD6A981B4AC45200332CA7 /* User.swift */,
 				0E9BEB891B4AF1020081CB0D /* Repo.swift */,
 				0E9BEB8B1B4AF2A20081CB0D /* Event.swift */,
 			);
@@ -181,8 +181,8 @@
 		0ED1BA891B61DC9500245A90 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				0ED1BA8A1B61DCE000245A90 /* DiskCached.swift */,
-				0EC7AF4F1B63CB7000EB9F6E /* PocketHelper.swift */,
+				0EC7AF531B63E17300EB9F6E /* DiskCached.swift */,
+				0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -319,16 +319,16 @@
 			files = (
 				0E9BEB8C1B4AF2A20081CB0D /* Event.swift in Sources */,
 				0E9BEB8A1B4AF1020081CB0D /* Repo.swift in Sources */,
-				0ED1BA8B1B61DCE000245A90 /* DiskCached.swift in Sources */,
-				0EC7AF501B63CB7000EB9F6E /* PocketHelper.swift in Sources */,
+				0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */,
+				0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */,
 				0EAD6A951B49CBD000332CA7 /* InitialViewController.swift in Sources */,
+				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
 				0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */,
-				0EAD6A991B4AC45200332CA7 /* User.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
+				0EC7AF581B63E19A00EB9F6E /* User.swift in Sources */,
 				0E83BAC11B484654007C3EB4 /* ViewController.swift in Sources */,
 				0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
-				0E0C3B7B1B6338D5005C6D66 /* UIImageView+ImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
