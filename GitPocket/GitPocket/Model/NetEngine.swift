@@ -24,10 +24,30 @@ class NetEngine {
   
   
   // Some properties that may change later
-  let githubEventURL = "https://api.github.com/users/jindulys/received_events?"
+  //let githubEventURL = "https://api.github.com/users/jindulys/received_events?"
+  
+  var githubEventURL:String?{
+    get{
+      if let currentUser = self.currentUserName {
+        return "https://api.github.com/users/\(currentUser)/received_events?"
+      }
+      return nil
+    }
+  }
+  
   var token: String?
   var currentUser: User?
   var eventETag: String?
+  var currentUserName:String? {
+    get{
+      if let name = NSUserDefaults.standardUserDefaults().valueForKey("GitPocketUserName") as? String {
+        return name
+      }
+      return nil
+    }
+  }
+  
+  static let SharedInstance = NetEngine()
   
   
   func requestOAuthAccess() {
@@ -107,6 +127,8 @@ class NetEngine {
           switch httpResponse.statusCode {
             case 200...299:
               let user = User.parseJSONDataIntoSingleUser(data!)
+              NSUserDefaults.standardUserDefaults().setObject(user!.userName!, forKey: "GitPocketUserName")
+              NSUserDefaults.standardUserDefaults().synchronize()
               self.currentUser = user
             default:
               print("Authenticated User Response Error")
@@ -116,6 +138,42 @@ class NetEngine {
     }
     
     userTask!.resume()
+  }
+  
+  func requestTokenURL(url:String, completionHandler:(dict:NSDictionary?, error: NSError?) -> Void) {
+    if let token = self.token {
+      let requestSession = NSURLSession.sharedSession()
+      
+      let requestURLString = "\(url)?access_token=\(token)"
+      let requestTask = requestSession.dataTaskWithURL(requestURLString.URL, completionHandler: {(data, response, error) -> Void in
+        if error != nil {
+          print("URL error")
+        } else {
+          if let httpResponse = response as? NSHTTPURLResponse {
+            switch httpResponse.statusCode {
+              case 200...299:
+                // Parse data to Dict
+                do {
+                  if let repoInfo = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
+                    
+                    completionHandler(dict:repoInfo, error:nil)
+                  }
+                  print("Can't convert Dict")
+                } catch _ {
+                  print("Can't parse response")
+                }
+                
+                
+                print("Value")
+              default:
+                print("Error")
+            }
+          }
+        }
+      })
+      
+      requestTask?.resume()
+    }
   }
   
   
@@ -137,7 +195,7 @@ class NetEngine {
       
       eventSession = NSURLSession.sharedSession()
       
-      let eventURLString = "\(githubEventURL)access_token=\(token)"
+      let eventURLString = "\(githubEventURL!)access_token=\(token)"
       //let eventURLString = "\(testEventURL)"
       let eventURL = NSURL(string: eventURLString)
       let eventTask = eventSession.dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in

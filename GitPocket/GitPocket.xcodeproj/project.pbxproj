@@ -23,6 +23,7 @@
 		0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
 		0EC7AF581B63E19A00EB9F6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF571B63E19A00EB9F6E /* User.swift */; };
 		0EC7AF5B1B64906E00EB9F6E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF5A1B64906E00EB9F6E /* InitialViewController.swift */; };
+		0EC7AF5D1B6493DD00EB9F6E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF5C1B6493DD00EB9F6E /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketHelper.swift; path = Utilities/PocketHelper.swift; sourceTree = "<group>"; };
 		0EC7AF571B63E19A00EB9F6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		0EC7AF5A1B64906E00EB9F6E /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = ViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
+		0EC7AF5C1B6493DD00EB9F6E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = ViewControllers/WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				0EC7AF5A1B64906E00EB9F6E /* InitialViewController.swift */,
+				0EC7AF5C1B6493DD00EB9F6E /* WebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */,
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
 				0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */,
+				0EC7AF5D1B6493DD00EB9F6E /* WebViewController.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
 				0EC7AF581B63E19A00EB9F6E /* User.swift in Sources */,
 				0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */,

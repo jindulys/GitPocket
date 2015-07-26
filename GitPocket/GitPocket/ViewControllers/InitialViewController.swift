@@ -22,8 +22,7 @@ class InitialViewController: UIViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadView", name: kGitPocketSuccessfullyGetTokenKey, object: nil)
     
     // Set NetEngine
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    self.netEngine = appDelegate.netEngine
+    self.netEngine = NetEngine.SharedInstance
     
     guard let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String else {
       self.netEngine?.requestOAuthAccess()
@@ -81,6 +80,14 @@ class InitialViewController: UIViewController {
 
 extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
   
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if let events = self.events {
+      return events.count
+    } else {
+      return 0
+    }
+  }
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if #available(iOS 9.0, *) {
       let cell = tableView.dequeueReusableCellWithIdentifier("GithubFeedCell") as! GithubFeedCell
@@ -93,14 +100,22 @@ extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
       let cell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
       return cell
     }
-    
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let events = self.events {
-      return events.count
-    } else {
-      return 0
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    let event = events![indexPath.row]
+    if let repo = event.repo  {
+      repo.getRepoFullInfoWithCompletionHander(){
+        [unowned self] in
+        if let repoURL = repo.homeURL {
+          dispatch_async(dispatch_get_main_queue()) {
+            let webVC = WebViewController()
+            webVC.webURL = repoURL
+            self.navigationController?.pushViewController(webVC, animated: true)
+          }
+        }
+      }
     }
   }
 }
