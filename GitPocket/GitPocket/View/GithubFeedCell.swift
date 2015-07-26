@@ -31,6 +31,9 @@ class GithubFeedCell: UITableViewCell
   }
   
   func configureCellWithConfigureBlock(event:Event) {
+    //First clean the initial view
+    self.avatarView.image = nil
+    
     // avatar view
     let avatarURL = NSURL(string: (event.actor?.avatarURL)!)
     //let data = NSData(contentsOfURL: avatarURL!)
