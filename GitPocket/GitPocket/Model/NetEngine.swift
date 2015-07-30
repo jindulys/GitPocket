@@ -113,7 +113,7 @@ class NetEngine {
           }
         }
       }
-    })!.resume()
+    }).resume()
   }
   
   func requestAuthenticatedUser() {
@@ -137,7 +137,7 @@ class NetEngine {
       }
     }
     
-    userTask!.resume()
+    userTask.resume()
   }
   
   func requestTokenURL(url:String, completionHandler:(dict:NSDictionary?, error: NSError?) -> Void) {
@@ -172,7 +172,7 @@ class NetEngine {
         }
       })
       
-      requestTask?.resume()
+      requestTask.resume()
     }
   }
   
@@ -223,7 +223,7 @@ class NetEngine {
         }
         
       })
-      eventTask?.resume()
+      eventTask.resume()
     }
   }
 }
@@ -324,7 +324,7 @@ class Manager {
     request.setValue("image/*", forHTTPHeaderField: "Accept")
     let task = session.dataTaskWithRequest(request)
     
-    let loader = Loader(task: task!, delegate: self)
+    let loader = Loader(task: task, delegate: self)
     delegate[URL] = loader
     return loader
   }

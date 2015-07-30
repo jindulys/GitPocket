@@ -17,6 +17,7 @@
 		0E83BAE21B484654007C3EB4 /* GitPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */; };
 		0E9BEB8A1B4AF1020081CB0D /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BEB891B4AF1020081CB0D /* Repo.swift */; };
 		0E9BEB8C1B4AF2A20081CB0D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BEB8B1B4AF2A20081CB0D /* Event.swift */; };
+		0EA02E181B69AE5D00BCADE0 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA02E171B69AE5D00BCADE0 /* PullToRefresh.swift */; };
 		0EAD6A971B49D69D00332CA7 /* NetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A961B49D69D00332CA7 /* NetEngine.swift */; };
 		0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */; };
 		0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; };
@@ -60,6 +61,7 @@
 		0E83BAE31B484654007C3EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E9BEB891B4AF1020081CB0D /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repo.swift; path = Model/Repo.swift; sourceTree = "<group>"; };
 		0E9BEB8B1B4AF2A20081CB0D /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Model/Event.swift; sourceTree = "<group>"; };
+		0EA02E171B69AE5D00BCADE0 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefresh.swift; path = PullToRefresh/PullToRefresh.swift; sourceTree = "<group>"; };
 		0EAD6A961B49D69D00332CA7 /* NetEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetEngine.swift; path = Model/NetEngine.swift; sourceTree = "<group>"; };
 		0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+ImageLoader.swift"; path = "Extensions/UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0EC7AF531B63E17300EB9F6E /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCached.swift; path = Utilities/DiskCached.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		0E83BABD1B484654007C3EB4 /* GitPocket */ = {
 			isa = PBXGroup;
 			children = (
+				0EA02E161B69AE1B00BCADE0 /* PullToRefresh */,
 				0EC7AF591B64900400EB9F6E /* ViewControllers */,
 				0E0C3B791B6338AA005C6D66 /* Extensions */,
 				0ED1BA891B61DC9500245A90 /* Utilities */,
@@ -164,6 +167,14 @@
 				0E83BAE31B484654007C3EB4 /* Info.plist */,
 			);
 			path = GitPocketUITests;
+			sourceTree = "<group>";
+		};
+		0EA02E161B69AE1B00BCADE0 /* PullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				0EA02E171B69AE5D00BCADE0 /* PullToRefresh.swift */,
+			);
+			name = PullToRefresh;
 			sourceTree = "<group>";
 		};
 		0EAD6A911B49CA2D00332CA7 /* Models */ = {
@@ -328,6 +339,7 @@
 				0E9BEB8C1B4AF2A20081CB0D /* Event.swift in Sources */,
 				0E9BEB8A1B4AF1020081CB0D /* Repo.swift in Sources */,
 				0EC7AF5B1B64906E00EB9F6E /* InitialViewController.swift in Sources */,
+				0EA02E181B69AE5D00BCADE0 /* PullToRefresh.swift in Sources */,
 				0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */,
 				0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */,
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
