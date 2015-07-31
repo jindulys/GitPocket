@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */; };
+		0E3CDE341B6B2320008AB425 /* UIScrollView+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3CDE331B6B2320008AB425 /* UIScrollView+PullToRefresh.swift */; };
 		0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BABE1B484654007C3EB4 /* AppDelegate.swift */; };
 		0E83BAC41B484654007C3EB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E83BAC21B484654007C3EB4 /* Main.storyboard */; };
 		0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAC51B484654007C3EB4 /* GitPocket.xcdatamodeld */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GithubFeedCell.swift; path = View/GithubFeedCell.swift; sourceTree = "<group>"; };
+		0E3CDE331B6B2320008AB425 /* UIScrollView+PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScrollView+PullToRefresh.swift"; path = "PullToRefresh/UIScrollView+PullToRefresh.swift"; sourceTree = "<group>"; };
 		0E83BABB1B484654007C3EB4 /* GitPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BABE1B484654007C3EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E83BAC31B484654007C3EB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				0EA02E171B69AE5D00BCADE0 /* PullToRefresh.swift */,
+				0E3CDE331B6B2320008AB425 /* UIScrollView+PullToRefresh.swift */,
 			);
 			name = PullToRefresh;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
 				0EC7AF581B63E19A00EB9F6E /* User.swift in Sources */,
 				0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */,
+				0E3CDE341B6B2320008AB425 /* UIScrollView+PullToRefresh.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

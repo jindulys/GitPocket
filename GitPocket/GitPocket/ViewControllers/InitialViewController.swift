@@ -49,10 +49,6 @@ class InitialViewController: UIViewController {
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.estimatedRowHeight = 90
     
-    // add refresh button
-    let button = UIBarButtonItem(title: "Continue", style: .Plain, target: self, action: "sayHello:")
-    self.navigationItem.leftBarButtonItem = button
-    
     // Setup constraints
     self.tableView.translatesAutoresizingMaskIntoConstraints = false
     let views: NSDictionary = ["tableView": self.tableView]
@@ -67,13 +63,18 @@ class InitialViewController: UIViewController {
     self.view.setNeedsLayout()
   }
   
-  func sayHello(sender: UIBarButtonItem) {
-    self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
-      if let results = events {
-        self.events = results
-        self.tableView.reloadData()
-      }
-    })
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    // Add PullToRefresh
+    self.tableView.addPullToRefresh(PullToRefresh()) { () -> () in
+      self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
+        if let results = events {
+          self.events = results
+          self.tableView.reloadData()
+        }
+        self.tableView.endRefresing()
+      })
+    }
   }
 }
 
