@@ -135,17 +135,14 @@ class DefaultRefreshView: UIView {
   
   func commonInit() {
     frame = CGRectMake(frame.origin.x, frame.origin.y, frame.width, 40)
+    activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    activityIndicator.hidesWhenStopped  = false
+    addSubview(activityIndicator)
   }
   
   override func layoutSubviews() {
-    if (activityIndicator == nil) {
-      activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-      activityIndicator.center = convertPoint(center, fromView: superview)
-      activityIndicator.hidesWhenStopped = false
-      addSubview(activityIndicator)
-    }
-    
     super.layoutSubviews()
+    activityIndicator.center = convertPoint(center, fromView: superview)
   }
   
   override func willMoveToSuperview(newSuperview: UIView?) {

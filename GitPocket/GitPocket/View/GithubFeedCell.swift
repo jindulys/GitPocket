@@ -119,6 +119,7 @@ class GithubFeedCell: UITableViewCell
     let avatarHeightConstraint = avatarView.heightAnchor.constraintEqualToConstant(60.0)
     avatarHeightConstraint.priority = 999
     avatarHeightConstraint.identifier = "avatarHeightConstraint"
+    
     // Action Label Constraints
     let actionLeadingConstraint = actionLabel.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 15.0)
     actionLeadingConstraint.identifier = "actionLeadingConstraint"
