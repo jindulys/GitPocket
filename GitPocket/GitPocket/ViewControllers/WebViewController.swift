@@ -10,31 +10,31 @@ import Foundation
 import UIKit
 
 class WebViewController: UIViewController {
-  let webView: UIWebView = UIWebView()
-  var webURL: URLLiteralConvertible?
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupViews()
-    let urlRequest = NSURLRequest(URL: (webURL?.URL)!)
-    webView.loadRequest(urlRequest)
-  }
-  
-  func setupViews() {
-    self.view.addSubview(webView)
-    webView.translatesAutoresizingMaskIntoConstraints = false
+    let webView: UIWebView = UIWebView()
+    var webURL: URLLiteralConvertible?
     
-    if #available(iOS 9.0, *) {
-      // webView constraints
-      let webViewLeadingConstraint = webView.leadingAnchor.constraintEqualToAnchor(self.view.leadingAnchor)
-      
-      let webViewTrailingConstraint = webView.trailingAnchor.constraintEqualToAnchor(self.view.trailingAnchor)
-      
-      let webViewTopConstraint = webView.topAnchor.constraintEqualToAnchor(self.view.topAnchor)
-      
-      let webViewBottomConstraint = webView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor)
-      NSLayoutConstraint.activateConstraints([webViewLeadingConstraint, webViewTopConstraint, webViewBottomConstraint, webViewTrailingConstraint])
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        let urlRequest = NSURLRequest(URL: (webURL?.URL)!)
+        webView.loadRequest(urlRequest)
     }
-
-  }
+    
+    func setupViews() {
+        self.view.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        
+        if #available(iOS 9.0, *) {
+            // webView constraints
+            let webViewLeadingConstraint = webView.leadingAnchor.constraintEqualToAnchor(self.view.leadingAnchor)
+            
+            let webViewTrailingConstraint = webView.trailingAnchor.constraintEqualToAnchor(self.view.trailingAnchor)
+            
+            let webViewTopConstraint = webView.topAnchor.constraintEqualToAnchor(self.view.topAnchor)
+            
+            let webViewBottomConstraint = webView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor)
+            NSLayoutConstraint.activateConstraints([webViewLeadingConstraint, webViewTopConstraint, webViewBottomConstraint, webViewTrailingConstraint])
+        }
+        
+    }
 }
