@@ -179,6 +179,11 @@ class NetEngine {
     
     // Totally test
     func requestEventWithCompletionHandler(completionHander:(events:[Event]?, error:NSError?)-> Void) {
+        requestEventWithPage(1, completionHander: completionHander)
+    }
+    
+    
+    func requestEventWithPage(page: Int, completionHander:(events:[Event]?, error:NSError?)-> Void) {
         // Method1 use access_token
         if let token = self.token {
             // Configure ETag NSURLSessionConfiguration
@@ -195,7 +200,7 @@ class NetEngine {
             
             eventSession = NSURLSession.sharedSession()
             
-            let eventURLString = "\(githubEventURL!)access_token=\(token)"
+            let eventURLString = "\(githubEventURL!)access_token=\(token)&page=\(page)"
             //let eventURLString = "\(testEventURL)"
             let eventURL = NSURL(string: eventURLString)
             let eventTask = eventSession.dataTaskWithURL(eventURL!, completionHandler: { (data, response, error) -> Void in

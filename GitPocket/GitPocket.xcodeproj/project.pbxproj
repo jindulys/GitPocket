@@ -27,6 +27,7 @@
 		0EC7AF581B63E19A00EB9F6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF571B63E19A00EB9F6E /* User.swift */; };
 		0EC7AF5B1B64906E00EB9F6E /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF5A1B64906E00EB9F6E /* InitialViewController.swift */; };
 		0EC7AF5D1B6493DD00EB9F6E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF5C1B6493DD00EB9F6E /* WebViewController.swift */; };
+		0EF5A2841BA5DC4D00B1FFC2 /* String+Funcitionalities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF5A2831BA5DC4D00B1FFC2 /* String+Funcitionalities.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		0EC7AF571B63E19A00EB9F6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		0EC7AF5A1B64906E00EB9F6E /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = ViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		0EC7AF5C1B6493DD00EB9F6E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = ViewControllers/WebViewController.swift; sourceTree = "<group>"; };
+		0EF5A2831BA5DC4D00B1FFC2 /* String+Funcitionalities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Funcitionalities.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */,
+				0EF5A2831BA5DC4D00B1FFC2 /* String+Funcitionalities.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				0E9BEB8A1B4AF1020081CB0D /* Repo.swift in Sources */,
 				0EC7AF5B1B64906E00EB9F6E /* InitialViewController.swift in Sources */,
 				0EA02E181B69AE5D00BCADE0 /* PullToRefresh.swift in Sources */,
+				0EF5A2841BA5DC4D00B1FFC2 /* String+Funcitionalities.swift in Sources */,
 				0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */,
 				0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */,
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,

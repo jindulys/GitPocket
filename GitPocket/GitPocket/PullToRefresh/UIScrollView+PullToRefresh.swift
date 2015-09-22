@@ -32,7 +32,6 @@ extension UIScrollView {
         
         let view = pullToRefresh.refreshView
         view.frame = CGRectMake(0, -view.frame.size.height, self.frame.size.width, view.frame.size.height)
-        print("\(self.frame.size.width)")
         self.addSubview(view)
         self.sendSubviewToBack(view)
     }

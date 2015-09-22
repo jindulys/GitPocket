@@ -100,6 +100,7 @@ class Event {
     var type: EventType?
     var actor: User?
     var repo: Repo?
+    var eventID: String?
     
     init(eventInfo: NSDictionary) {
         
@@ -113,6 +114,10 @@ class Event {
         
         if let repo = eventInfo.valueForKey("repo") as? NSDictionary {
             self.repo = Repo(repoInfo: repo)
+        }
+        
+        if let eventID = eventInfo.valueForKey("id") as? String {
+            self.eventID = eventID
         }
         
     }

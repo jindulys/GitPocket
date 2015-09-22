@@ -13,6 +13,8 @@ class InitialViewController: UIViewController {
     var tableView: UITableView = UITableView()
     var netEngine: NetEngine?
     var events: [Event]?
+    var hasToken: Bool = false
+    var currentPage: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +34,26 @@ class InitialViewController: UIViewController {
             self.netEngine?.requestOAuthAccess()
             return
         }
-        
+        hasToken = true
         self.netEngine?.token = token
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        // Add PullToRefresh
+        self.tableView.addPullToRefresh(PullToRefresh()) { () -> () in
+            self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
+                if let results = events {
+                    self.mergeNewEvents(results)
+                    self.tableView.reloadData()
+                }
+                self.tableView.endRefresing()
+            })
+        }
+        
+        if hasToken {
+            self.tableView.startRefreshing()
+        }
     }
     
     func setupViews() {
@@ -61,20 +81,46 @@ class InitialViewController: UIViewController {
         print("finish token getting")
         setupViews()
         self.view.setNeedsLayout()
+        self.tableView.startRefreshing()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        // Add PullToRefresh
-        self.tableView.addPullToRefresh(PullToRefresh()) { () -> () in
-            self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
-                if let results = events {
-                    self.events = results
-                    self.tableView.reloadData()
-                }
-                self.tableView.endRefresing()
-            })
+    func loadMoreData() {
+        print("Half way Loading more data!")
+        
+        self.netEngine?.requestEventWithPage(++currentPage) { (events, error) -> Void in
+            if let results = events {
+                self.events?.appendContentsOf(results)
+                self.tableView.reloadData()
+            }
+            self.tableView.endRefresing()
         }
+    }
+    
+    func mergeNewEvents(newEvent:[Event]) {
+        guard let originalEvents = self.events else {
+            self.events = newEvent
+            return
+        }
+        var identicalIndex = -1
+        for (index, value) in newEvent.enumerate() {
+            if let currentID = value.eventID {
+                if currentID == originalEvents[0].eventID! {
+                    identicalIndex = index
+                    break
+                }
+            }
+        }
+        
+        var arrayToMergeInto:[Event]
+        if identicalIndex >= 0 {
+            arrayToMergeInto = Array(newEvent[0..<identicalIndex])
+        } else {
+            // Merge all events
+            arrayToMergeInto = newEvent
+        }
+        
+        arrayToMergeInto.appendContentsOf(originalEvents)
+        self.events = arrayToMergeInto
     }
 }
 
@@ -90,17 +136,24 @@ extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var cell: UITableViewCell
         if #available(iOS 9.0, *) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("GithubFeedCell") as! GithubFeedCell
+            let gitFeedCell = tableView.dequeueReusableCellWithIdentifier("GithubFeedCell") as! GithubFeedCell
             if let events = self.events {
-                cell.configureCellWithConfigureBlock(events[indexPath.row])
+                gitFeedCell.configureCellWithConfigureBlock(events[indexPath.row])
             }
-            return cell
+            cell = gitFeedCell
         } else {
             // Fallback on earlier versions
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
-            return cell
+            cell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         }
+        
+        if (indexPath.row == self.events!.count/2) {
+            self.loadMoreData()
+        }
+        
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
