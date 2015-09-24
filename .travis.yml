@@ -1,5 +1,0 @@
-language: objective-c
-osx_image: xcode7
-xcode_project: GitPocket.xcodeproj
-xcode_scheme: GitPocket
-SDK: iphonesimulator9.0
