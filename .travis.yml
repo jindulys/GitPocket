@@ -4,5 +4,5 @@ xcode_project: GitPocket.xcodeproj
 xcode_scheme: GitPocket
 SDK: iphonesimulator9.0
 script:
-- xctool -workspace cam-pro.xcworkspace -scheme cam-beta clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+- xctool -project GitPocket.xcodeproj -scheme GitPocket  clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
