@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E2825991BB262E600CD20B6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF5C1B6493DD00EB9F6E /* WebViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		0E28259A1BB263DD00CD20B6 /* NetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD6A961B49D69D00332CA7 /* NetEngine.swift */; settings = {ASSET_TAGS = (); }; };
+		0E28259B1BB263F100CD20B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF571B63E19A00EB9F6E /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		0E28259D1BB2640700CD20B6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BEB8B1B4AF2A20081CB0D /* Event.swift */; settings = {ASSET_TAGS = (); }; };
+		0E28259E1BB2641A00CD20B6 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BEB891B4AF1020081CB0D /* Repo.swift */; settings = {ASSET_TAGS = (); }; };
+		0E28259F1BB2643100CD20B6 /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; settings = {ASSET_TAGS = (); }; };
+		0E2825A01BB2645700CD20B6 /* String+Funcitionalities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF5A2831BA5DC4D00B1FFC2 /* String+Funcitionalities.swift */; settings = {ASSET_TAGS = (); }; };
 		0E3816E11B5756F900D6DAFE /* GithubFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3816E01B5756F900D6DAFE /* GithubFeedCell.swift */; };
 		0E3CDE341B6B2320008AB425 /* UIScrollView+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3CDE331B6B2320008AB425 /* UIScrollView+PullToRefresh.swift */; };
 		0E3CDE361B6E6159008AB425 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3CDE351B6E6159008AB425 /* TagButton.swift */; };
@@ -368,7 +376,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E2825A01BB2645700CD20B6 /* String+Funcitionalities.swift in Sources */,
+				0E28259E1BB2641A00CD20B6 /* Repo.swift in Sources */,
+				0E28259B1BB263F100CD20B6 /* User.swift in Sources */,
+				0E28259A1BB263DD00CD20B6 /* NetEngine.swift in Sources */,
+				0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */,
 				0E83BAD71B484654007C3EB4 /* GitPocketTests.swift in Sources */,
+				0E28259D1BB2640700CD20B6 /* Event.swift in Sources */,
+				0E28259F1BB2643100CD20B6 /* DiskCached.swift in Sources */,
+				0E2825991BB262E600CD20B6 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

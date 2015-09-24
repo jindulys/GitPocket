@@ -8,4 +8,4 @@
 
 import Foundation
 
-let kGitPocketSuccessfullyGetTokenKey = "kGitPocketSuccessfullyGetTokenKey"
+public let kGitPocketSuccessfullyGetTokenKey = "kGitPocketSuccessfullyGetTokenKey"

@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class NetEngine {
+public class NetEngine {
     let clientID = "bf39a01edfbf0035cb42"
     let clientSecret = "fd9c0462e830bc6936a217975b024e703d32adc0"
     let githubOAuthURL = "https://github.com/login/oauth/authorize?"
@@ -238,18 +238,18 @@ class NetEngine {
 */
 typealias CompletionHandler = (NSURL, UIImage?, NSError?) -> ()
 
-protocol URLLiteralConvertible {
+public protocol URLLiteralConvertible {
     var URL: NSURL { get }
 }
 
 extension NSURL: URLLiteralConvertible {
-    var URL: NSURL {
+    public var URL: NSURL {
         return self
     }
 }
 
 extension String: URLLiteralConvertible {
-    var URL: NSURL {
+    public var URL: NSURL {
         if let string = stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
             return NSURL(string: string)!
         }

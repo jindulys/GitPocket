@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-class InitialViewController: UIViewController {
+public class InitialViewController: UIViewController {
     var tableView: UITableView = UITableView()
     var netEngine: NetEngine?
     var events: [Event]?
     var hasToken: Bool = false
     var currentPage: Int = 1
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "User"
         
@@ -38,7 +38,7 @@ class InitialViewController: UIViewController {
         self.netEngine?.token = token
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // Add PullToRefresh
         self.tableView.addPullToRefresh(PullToRefresh()) { () -> () in
@@ -127,7 +127,7 @@ class InitialViewController: UIViewController {
 
 extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = self.events {
             return events.count
         } else {
@@ -135,7 +135,7 @@ extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell
         if #available(iOS 9.0, *) {
@@ -156,7 +156,7 @@ extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let event = events![indexPath.row]
         if let repo = event.repo  {

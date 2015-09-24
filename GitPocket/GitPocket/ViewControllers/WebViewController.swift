@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class WebViewController: UIViewController {
-    let webView: UIWebView = UIWebView()
-    var webURL: URLLiteralConvertible?
+public class WebViewController: UIViewController {
+    public let webView: UIWebView = UIWebView()
+    public var webURL: URLLiteralConvertible?
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         let urlRequest = NSURLRequest(URL: (webURL?.URL)!)

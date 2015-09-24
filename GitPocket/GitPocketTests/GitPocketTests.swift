@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import GitPocket
 
 class GitPocketTests: XCTestCase {
     
@@ -30,6 +31,17 @@ class GitPocketTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testWebViewController() {
+        let v = WebViewController()
+        v.webURL = "http://www.google.com"
+        XCTAssertNotNil(v.view, "View Did Not load")
+    }
+    
+    func testEventInitialization() {
+        let event = Event(eventInfo: NSDictionary(dictionary: ["id" : "1234"]))
+        XCTAssert(event.eventID! == "1234", "failed initialize event")
     }
     
 }
