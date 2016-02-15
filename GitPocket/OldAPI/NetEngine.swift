@@ -250,7 +250,7 @@ extension NSURL: URLLiteralConvertible {
 
 extension String: URLLiteralConvertible {
     public var URL: NSURL {
-        if let string = stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
+        if let string = stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
             return NSURL(string: string)!
         }
         
