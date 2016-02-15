@@ -60,7 +60,7 @@ public class InitialViewController: UIViewController {
         self.view.addSubview(self.tableView)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0)
+        self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0, 0, 0)
         if #available(iOS 9.0, *) {
             self.tableView.registerClass(GithubFeedCell.self, forCellReuseIdentifier: "GithubFeedCell")
         } else {
