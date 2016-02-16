@@ -39,9 +39,4 @@ class GitPocketTests: XCTestCase {
         XCTAssertNotNil(v.view, "View Did Not load")
     }
     
-    func testEventInitialization() {
-        let event = Event(eventInfo: NSDictionary(dictionary: ["id" : "1234"]))
-        XCTAssert(event.eventID! == "1234", "failed initialize event")
-    }
-    
 }

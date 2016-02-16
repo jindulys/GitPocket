@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
-		0E28259F1BB2643100CD20B6 /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; };
 		0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249881C726FA300629372 /* FollowersViewController.swift */; };
 		0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498A1C7272A600629372 /* InitialViewController.swift */; };
 		0E62498D1C7272A600629372 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498B1C7272A600629372 /* WebViewController.swift */; };
@@ -21,6 +20,8 @@
 		0E62499B1C72735A00629372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249971C72735A00629372 /* User.swift */; };
 		0E62499F1C72738C00629372 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62499D1C72738C00629372 /* PullToRefresh.swift */; };
 		0E6249A01C72738C00629372 /* UIScrollView+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62499E1C72738C00629372 /* UIScrollView+PullToRefresh.swift */; };
+		0E6249A31C729A3200629372 /* GithubSerializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249A21C729A3200629372 /* GithubSerializers.swift */; };
+		0E6249A51C72B69D00629372 /* GithubModulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249A41C72B69D00629372 /* GithubModulerTests.swift */; };
 		0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BABE1B484654007C3EB4 /* AppDelegate.swift */; };
 		0E83BAC41B484654007C3EB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E83BAC21B484654007C3EB4 /* Main.storyboard */; };
 		0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAC51B484654007C3EB4 /* GitPocket.xcdatamodeld */; };
@@ -64,6 +65,8 @@
 		0E6249971C72735A00629372 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = OldAPI/User.swift; sourceTree = "<group>"; };
 		0E62499D1C72738C00629372 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		0E62499E1C72738C00629372 /* UIScrollView+PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PullToRefresh.swift"; sourceTree = "<group>"; };
+		0E6249A21C729A3200629372 /* GithubSerializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GithubSerializers.swift; path = GitHubAPI/GithubSerializers.swift; sourceTree = "<group>"; };
+		0E6249A41C72B69D00629372 /* GithubModulerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubModulerTests.swift; sourceTree = "<group>"; };
 		0E83BABB1B484654007C3EB4 /* GitPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BABE1B484654007C3EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E83BAC31B484654007C3EB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 		0E6249A11C72756A00629372 /* GitHubAPI */ = {
 			isa = PBXGroup;
 			children = (
+				0E6249A21C729A3200629372 /* GithubSerializers.swift */,
 			);
 			name = GitHubAPI;
 			sourceTree = "<group>";
@@ -200,6 +204,7 @@
 			children = (
 				0E83BAD61B484654007C3EB4 /* GitPocketTests.swift */,
 				0E83BAD81B484654007C3EB4 /* Info.plist */,
+				0E6249A41C72B69D00629372 /* GithubModulerTests.swift */,
 			);
 			path = GitPocketTests;
 			sourceTree = "<group>";
@@ -449,6 +454,7 @@
 				0E6249901C7272D000629372 /* GithubFeedCell.swift in Sources */,
 				0E6249991C72735A00629372 /* NetEngine.swift in Sources */,
 				0E6249A01C72738C00629372 /* UIScrollView+PullToRefresh.swift in Sources */,
+				0E6249A31C729A3200629372 /* GithubSerializers.swift in Sources */,
 				0E62499B1C72735A00629372 /* User.swift in Sources */,
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
 				0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */,
@@ -467,8 +473,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */,
+				0E6249A51C72B69D00629372 /* GithubModulerTests.swift in Sources */,
 				0E83BAD71B484654007C3EB4 /* GitPocketTests.swift in Sources */,
-				0E28259F1BB2643100CD20B6 /* DiskCached.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,11 +611,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yansong li (URBN284GZM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yansong li (URBN284GZM)";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = GitPocket/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yansong.GitPocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "af3b27cf-6d80-4bcb-aa52-8cfa24076dfb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -618,13 +625,14 @@
 			baseConfigurationReference = 6A1E213756E684A9162881FD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yansong li (L6WNB8Y8NX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yansong li (L6WNB8Y8NX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yansong li (URBN284GZM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yansong li (URBN284GZM)";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = GitPocket/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yansong.GitPocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "af3b27cf-6d80-4bcb-aa52-8cfa24076dfb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
