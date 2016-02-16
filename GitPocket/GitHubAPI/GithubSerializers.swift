@@ -169,4 +169,121 @@ public class ArraySerializer<T: JSONSerializer>: JSONSerializer {
     }
 }
 
+public class BoolSerializer: JSONSerializer {
+    public func serialize(value: Bool) -> JSON {
+        return .Number(NSNumber(bool: value))
+    }
+    
+    public func deserialize(json: JSON) -> Bool {
+        switch json {
+            case .Number(let num):
+                return num.boolValue
+            default:
+                fatalError("Type error deserializing")
+        }
+    }
+}
+
+public class UInt64Serializer : JSONSerializer {
+    public func serialize(value : UInt64) -> JSON {
+        return .Number(NSNumber(unsignedLongLong: value))
+    }
+    
+    public func deserialize(json : JSON) -> UInt64 {
+        switch json {
+        case .Number(let n):
+            return n.unsignedLongLongValue
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+
+public class Int64Serializer : JSONSerializer {
+    public func serialize(value : Int64) -> JSON {
+        return .Number(NSNumber(longLong: value))
+    }
+    
+    public func deserialize(json : JSON) -> Int64 {
+        switch json {
+        case .Number(let n):
+            return n.longLongValue
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+
+public class Int32Serializer : JSONSerializer {
+    public func serialize(value : Int32) -> JSON {
+        return .Number(NSNumber(int: value))
+    }
+    
+    public func deserialize(json : JSON) -> Int32 {
+        switch json {
+        case .Number(let n):
+            return n.intValue
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+public class UInt32Serializer : JSONSerializer {
+    public func serialize(value : UInt32) -> JSON {
+        return .Number(NSNumber(unsignedInt: value))
+    }
+    
+    public func deserialize(json : JSON) -> UInt32 {
+        switch json {
+        case .Number(let n):
+            return n.unsignedIntValue
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+
+public class NSDataSerializer : JSONSerializer {
+    public func serialize(value : NSData) -> JSON {
+        return .Str(value.base64EncodedStringWithOptions([]))
+    }
+    
+    public func deserialize(json: JSON) -> NSData {
+        switch(json) {
+        case .Str(let s):
+            return NSData(base64EncodedString: s, options: [])!
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+
+public class DoubleSerializer : JSONSerializer {
+    public func serialize(value: Double) -> JSON {
+        return .Number(NSNumber(double: value))
+    }
+    
+    public func deserialize(json: JSON) -> Double {
+        switch json {
+        case .Number(let n):
+            return n.doubleValue
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+
+struct Serialization {
+    static var _StringSerializer = StringSerializer()
+    static var _BoolSerializer = BoolSerializer()
+    static var _UInt64Serializer = UInt64Serializer()
+    static var _UInt32Serializer = UInt32Serializer()
+    static var _Int64Serializer = Int64Serializer()
+    static var _Int32Serializer = Int32Serializer()
+    
+    static var _VoidSerializer = VoidSerializer()
+    static var _NSDataSerializer = NSDataSerializer()
+    static var _DoubleSerializer = DoubleSerializer()
+}
+
 
