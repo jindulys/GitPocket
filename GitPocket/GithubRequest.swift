@@ -1,0 +1,159 @@
+//
+//  Request.swift
+//  GitPocket
+//
+//  Created by yansong li on 2016-02-16.
+//  Copyright © 2016 yansong li. All rights reserved.
+//
+
+import Foundation
+import Alamofire
+
+public class GithubClient {
+    var manager: Alamofire.Manager
+    var baseHosts: [String: String]
+    
+    init(manager: Alamofire.Manager, baseHosts: [String: String]) {
+        self.manager = manager
+        self.baseHosts = baseHosts
+    }
+}
+
+func utf8Decode(data: NSData) -> String {
+    return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+}
+
+public class Box<T> {
+    public let value: T
+    init(_ value: T) {
+        self.value = value
+    }
+}
+
+public enum RequestError<EType> : CustomStringConvertible {
+    case BadRequest(Int, Box<EType>)
+    case InternalServerError(Int, String?)
+    case RateLimitError
+    case HTTPError(Int?, String?)
+    
+    public var description: String {
+        switch self {
+            case let .BadRequest(code, box):
+                var ret = ""
+                ret += "Bad Request - Code: \(code)"
+                ret += " : \(box.value)"
+                return ret
+            case let .InternalServerError(code, message):
+                var ret = ""
+                ret += "Internal Server Error: \(code)"
+                if let m = message {
+                    ret += " : \(m)"
+                }
+                return ret
+            case .RateLimitError:
+                return "Rate limited"
+            case let .HTTPError(code, message):
+                var ret = "HTTP Error"
+                if let c = code {
+                    ret += " code: \(c)"
+                }
+                if let m = message {
+                    ret += " : \(m)"
+                }
+                return ret
+        }
+    }
+}
+
+
+/// Represents a request object
+///
+/// Pass in a closure to the `response` method to handle a response or error.
+public class GithubRequest<RType: JSONSerializer, EType: JSONSerializer> {
+    let responseSerializer: RType
+    let errorSerializer: EType
+    let request: Alamofire.Request
+    
+    init(request: Alamofire.Request, responseSerializer: RType, errorSerializer: EType) {
+        self.request = request
+        self.responseSerializer = responseSerializer
+        self.errorSerializer = errorSerializer
+    }
+    
+    func handleResponseError(response: NSHTTPURLResponse?, data: NSData?, error:ErrorType?) -> RequestError<EType.ValueType> {
+        if let code = response?.statusCode {
+            switch code {
+                case 500...599:
+                    var message = ""
+                    if let d = data {
+                        message = utf8Decode(d)
+                    }
+                    return .InternalServerError(code, message)
+                case 429:
+                    return .RateLimitError
+                case 400, 403, 404, 422:
+                    if let d = data {
+                        let messageJSON = parseJSON(d)
+                        switch messageJSON {
+                            case .Dictionary(let dic):
+                                let message = self.errorSerializer.deserialize(dic["message"]!)
+                                return .BadRequest(code, Box(message))
+                            default:
+                                fatalError("Failed to parse error type")
+                        }
+                    }
+                    fatalError("Failed to parse error type")
+                default:
+                    return .HTTPError(code, "HTTP Error")
+            }
+        } else {
+            var message = ""
+            if let d = data {
+                message = utf8Decode(d)
+            }
+            return .HTTPError(nil, message)
+        }
+    }
+}
+
+/// An "rpc-style" request
+public class RpcRequest<RType: JSONSerializer, EType: JSONSerializer>: GithubRequest<RType, EType> {
+    init(client: GithubClient, host: String, route: String, params: JSON, responseSerializer: RType, errorSerializer: EType) {
+        let url = "\(client.baseHosts[host]!)\(route)"
+        let headers = ["Content-Type": "application/json"]
+        
+        let request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers, encoding: ParameterEncoding.Custom({ (convertible, _) -> (NSMutableURLRequest, NSError?) in
+            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+            mutableRequest.HTTPBody = dumpJSON(params)
+            return (mutableRequest, nil)
+        }))
+        
+        super.init(request: request, responseSerializer: responseSerializer, errorSerializer: errorSerializer)
+        request.resume()
+    }
+    
+    public func response(complitionHandler:(RType.ValueType?, RequestError<EType.ValueType>?) -> Void) -> Self {
+        self.request.validate().response {
+            (request, response, data, error) -> Void in
+            let d = data!
+            if error != nil {
+                complitionHandler(nil, self.handleResponseError(response, data: d, error:error))
+            } else {
+                complitionHandler(self.responseSerializer.deserialize(parseJSON(d)), nil)
+            }
+        }
+        return self
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

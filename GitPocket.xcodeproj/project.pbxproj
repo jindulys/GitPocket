@@ -29,6 +29,7 @@
 		0E83BACC1B484654007C3EB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E83BACA1B484654007C3EB4 /* LaunchScreen.storyboard */; };
 		0E83BAD71B484654007C3EB4 /* GitPocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAD61B484654007C3EB4 /* GitPocketTests.swift */; };
 		0E83BAE21B484654007C3EB4 /* GitPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */; };
+		0E9229E91C73F064009BC5FF /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9229E81C73F064009BC5FF /* GithubRequest.swift */; };
 		0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */; };
 		0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; };
 		0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
@@ -80,6 +81,7 @@
 		0E83BADD1B484654007C3EB4 /* GitPocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitPocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitPocketUITests.swift; sourceTree = "<group>"; };
 		0E83BAE31B484654007C3EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E9229E81C73F064009BC5FF /* GithubRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
 		0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+ImageLoader.swift"; path = "Extensions/UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0EC7AF531B63E17300EB9F6E /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCached.swift; path = Utilities/DiskCached.swift; sourceTree = "<group>"; };
 		0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketHelper.swift; path = Utilities/PocketHelper.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				0E6249A21C729A3200629372 /* GithubSerializers.swift */,
+				0E9229E81C73F064009BC5FF /* GithubRequest.swift */,
 			);
 			name = GitHubAPI;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
 				0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
+				0E9229E91C73F064009BC5FF /* GithubRequest.swift in Sources */,
 				0E62498D1C7272A600629372 /* WebViewController.swift in Sources */,
 				0E62499A1C72735A00629372 /* Repo.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
