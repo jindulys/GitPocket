@@ -273,6 +273,30 @@ public class DoubleSerializer : JSONSerializer {
     }
 }
 
+public class NullableSerializer<T: JSONSerializer> {
+    let valueSerializer: T
+    init(_ valueSerializer:T) {
+        self.valueSerializer = valueSerializer
+    }
+    
+    public func serialize(value: T.ValueType?) -> JSON {
+        if let v = value {
+            return self.valueSerializer.serialize(v)
+        } else {
+            return .Null
+        }
+    }
+    
+    public func deserialize(json:JSON) -> T.ValueType? {
+        switch json {
+            case .Null:
+                return nil
+            default:
+                return self.valueSerializer.deserialize(json)
+        }
+    }
+}
+
 struct Serialization {
     static var _StringSerializer = StringSerializer()
     static var _BoolSerializer = BoolSerializer()

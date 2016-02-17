@@ -34,14 +34,14 @@ public class GithubUser {
     public let email: String?
     public let hireable: Bool?
     public let bio: String?
-    public let publicRepos: Int?
-    public let publicGists: Int?
-    public let followers: Int?
-    public let following: Int?
+    public let publicRepos: Int32?
+    public let publicGists: Int32?
+    public let followers: Int32?
+    public let following: Int32?
     public let createdAt: String?
     public let updatedAt: String?
     
-    init(login: String, id: Int32, avatarURL: String, url: String, name: String, htmlURL: String, type: String, followersURL: String? = nil, followingURL: String? = nil, gistsURL: String? = nil, starredURL: String? = nil, subscriptionsURL: String? = nil, organizationsURL: String? = nil, reposURL: String? = nil, eventsURL: String? = nil, receivedEventsURL: String? = nil, siteAdmin: Bool? = nil, company: String? = nil, blog: String? = nil, location: String? = nil, email: String? = nil, hireable: Bool? = nil, bio: String? = nil, publicRepos: Int? = nil, publicGists: Int? = nil, followers: Int? = nil, following: Int? = nil, createdAt: String? = nil, updatedAt: String? = nil) {
+    init(login: String, id: Int32, avatarURL: String, url: String, name: String, htmlURL: String, type: String, followersURL: String? = nil, followingURL: String? = nil, gistsURL: String? = nil, starredURL: String? = nil, subscriptionsURL: String? = nil, organizationsURL: String? = nil, reposURL: String? = nil, eventsURL: String? = nil, receivedEventsURL: String? = nil, siteAdmin: Bool? = nil, company: String? = nil, blog: String? = nil, location: String? = nil, email: String? = nil, hireable: Bool? = nil, bio: String? = nil, publicRepos: Int32? = nil, publicGists: Int32? = nil, followers: Int32? = nil, following: Int32? = nil, createdAt: String? = nil, updatedAt: String? = nil) {
         self.login        = login
         self.id           = id
         self.avatarURL    = avatarURL
@@ -71,5 +71,50 @@ public class GithubUser {
         self.following = following
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+    }
+}
+
+public class GithubUserSerializer: JSONSerializer {
+    public init() {}
+    public func serialize(value: GithubUser) -> JSON {
+        let retVal = [
+            "login": Serialization._StringSerializer.serialize(value.login),
+            "id": Serialization._Int32Serializer.serialize(value.id),
+            "avatar_url": Serialization._StringSerializer.serialize(value.avatarURL),
+            "url": Serialization._StringSerializer.serialize(value.url),
+            "name": Serialization._StringSerializer.serialize(value.name),
+            "html_url": Serialization._StringSerializer.serialize(value.htmlURL),
+            "type": Serialization._StringSerializer.serialize(value.type),
+            "followers_url": NullableSerializer(Serialization._StringSerializer).serialize(value.followersURL),
+            "following_url": NullableSerializer(Serialization._StringSerializer).serialize(value.followingURL),
+            "gists_url": NullableSerializer(Serialization._StringSerializer).serialize(value.gistsURL),
+            "starred_url": NullableSerializer(Serialization._StringSerializer).serialize(value.starredURL),
+            "subscriptions_url": NullableSerializer(Serialization._StringSerializer).serialize(value.subscriptionsURL),
+            "organizations_url": NullableSerializer(Serialization._StringSerializer).serialize(value.organizationsURL),
+            "repos_url": NullableSerializer(Serialization._StringSerializer).serialize(value.reposURL),
+            "events_url": NullableSerializer(Serialization._StringSerializer).serialize(value.eventsURL),
+            "received_events_url": NullableSerializer(Serialization._StringSerializer).serialize(value.receivedEventsURL),
+            "site_admin": NullableSerializer(Serialization._BoolSerializer).serialize(value.siteAdmin),
+            "company": NullableSerializer(Serialization._StringSerializer).serialize(value.company),
+            "blog": NullableSerializer(Serialization._StringSerializer).serialize(value.blog),
+            "location": NullableSerializer(Serialization._StringSerializer).serialize(value.location),
+            "email": NullableSerializer(Serialization._StringSerializer).serialize(value.email),
+            "hireable": NullableSerializer(Serialization._BoolSerializer).serialize(value.hireable),
+            "bio": NullableSerializer(Serialization._StringSerializer).serialize(value.bio),
+            "public_repos": NullableSerializer(Serialization._Int32Serializer).serialize(value.publicRepos),
+            "public_gists": NullableSerializer(Serialization._Int32Serializer).serialize(value.publicGists),
+            "followers": NullableSerializer(Serialization._Int32Serializer).serialize(value.followers),
+            "following": NullableSerializer(Serialization._Int32Serializer).serialize(value.following),
+            "created_at": NullableSerializer(Serialization._StringSerializer).serialize(value.createdAt),
+            "updated_at": NullableSerializer(Serialization._StringSerializer).serialize(value.updatedAt)
+        ]
+        return .Dictionary(retVal)
+    }
+    
+    public func deserialize(json: JSON) -> GithubUser {
+        switch json {
+            default:
+                fatalError("JSON Type Error")
+        }
     }
 }
