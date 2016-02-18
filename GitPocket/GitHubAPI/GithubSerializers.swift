@@ -134,6 +134,7 @@ public class VoidSerializer: JSONSerializer {
 }
 
 public class StringSerializer: JSONSerializer {
+    init() { }
     public func serialize(str: String) -> JSON {
         return .Str(str)
     }

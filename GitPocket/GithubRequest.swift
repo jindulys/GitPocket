@@ -118,15 +118,41 @@ public class GithubRequest<RType: JSONSerializer, EType: JSONSerializer> {
 
 /// An "rpc-style" request
 public class RpcRequest<RType: JSONSerializer, EType: JSONSerializer>: GithubRequest<RType, EType> {
-    init(client: GithubClient, host: String, route: String, params: JSON, responseSerializer: RType, errorSerializer: EType) {
+    /**
+     Initialize a RpcRequest Object
+     
+     - parameter client:             Client to get URL Host.
+     - parameter host:               host key to get from client.
+     - parameter route:              url path.
+     - parameter method:             HTTP Method.
+     - parameter params:             url parameters.
+     - parameter postParams:         HTTP Body parameters used for POST Request.
+     - parameter responseSerializer: responseSerializer used to generate response object.
+     - parameter errorSerializer:    errorSerializer.
+     
+     - returns: an initialized RpcRequest.
+     */
+    init(client: GithubClient, host: String, route: String, method: Alamofire.Method, params:[String: String] = ["": ""], postParams: JSON? = nil, responseSerializer: RType, errorSerializer: EType) {
         let url = "\(client.baseHosts[host]!)\(route)"
         let headers = ["Content-Type": "application/json"]
         
-        let request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers, encoding: ParameterEncoding.Custom({ (convertible, _) -> (NSMutableURLRequest, NSError?) in
-            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
-            mutableRequest.HTTPBody = dumpJSON(params)
-            return (mutableRequest, nil)
-        }))
+        var request: Alamofire.Request
+        switch method {
+            case .GET:
+                request = client.manager.request(.GET, url, parameters: params, headers: headers)
+            case .POST:
+                if let pParams = postParams {
+                    request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers, encoding: ParameterEncoding.Custom({ (convertible, _) -> (NSMutableURLRequest, NSError?) in
+                        let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+                        mutableRequest.HTTPBody = dumpJSON(pParams)
+                        return (mutableRequest, nil)
+                    }))
+                } else {
+                    request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers)
+                }
+            default:
+                fatalError("Wrong RpcRequest Method Type, should only be \"GET\" \"POST\"")
+        }
         
         super.init(request: request, responseSerializer: responseSerializer, errorSerializer: errorSerializer)
         request.resume()
