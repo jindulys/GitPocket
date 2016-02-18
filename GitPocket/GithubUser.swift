@@ -113,6 +113,37 @@ public class GithubUserSerializer: JSONSerializer {
     
     public func deserialize(json: JSON) -> GithubUser {
         switch json {
+            case .Dictionary(let dict):
+                let login = Serialization._StringSerializer.deserialize(dict["login"] ?? .Null)
+                let id = Serialization._Int32Serializer.deserialize(dict["id"] ?? .Null)
+                let avatarURL = Serialization._StringSerializer.deserialize(dict["avatar_url"] ?? .Null)
+                let url = Serialization._StringSerializer.deserialize(dict["url"] ?? .Null)
+                let name = Serialization._StringSerializer.deserialize(dict["name"] ?? .Null)
+                let htmlURL = Serialization._StringSerializer.deserialize(dict["html_url"] ?? .Null)
+                let type = Serialization._StringSerializer.deserialize(dict["type"] ?? .Null)
+                let followersURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["followers_url"] ?? .Null)
+                let followingURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["following_url"] ?? .Null)
+                let gistsURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["gists_url"] ?? .Null)
+                let starredURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["starred_url"] ?? .Null)
+                let subscriptionsURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["subscriptions_url"] ?? .Null)
+                let organizationsURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["organizations_url"] ?? .Null)
+                let reposURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["repos_url"] ?? .Null)
+                let eventsURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["events_url"] ?? .Null)
+                let receivedEventsURL = NullableSerializer(Serialization._StringSerializer).deserialize(dict["received_events_url"] ?? .Null)
+                let siteAdmin = NullableSerializer(Serialization._BoolSerializer).deserialize(dict["site_admin"] ?? .Null)
+                let company = NullableSerializer(Serialization._StringSerializer).deserialize(dict["company"] ?? .Null)
+                let blog = NullableSerializer(Serialization._StringSerializer).deserialize(dict["blog"] ?? .Null)
+                let location = NullableSerializer(Serialization._StringSerializer).deserialize(dict["location"] ?? .Null)
+                let email = NullableSerializer(Serialization._StringSerializer).deserialize(dict["email"] ?? .Null)
+                let hireable = NullableSerializer(Serialization._BoolSerializer).deserialize(dict["hireable"] ?? .Null)
+                let bio = NullableSerializer(Serialization._StringSerializer).deserialize(dict["bio"] ?? .Null)
+                let publicRepos = NullableSerializer(Serialization._Int32Serializer).deserialize(dict["public_repos"] ?? .Null)
+                let publicGists = NullableSerializer(Serialization._Int32Serializer).deserialize(dict["public_gists"] ?? .Null)
+                let followers = NullableSerializer(Serialization._Int32Serializer).deserialize(dict["followers"] ?? .Null)
+                let following = NullableSerializer(Serialization._Int32Serializer).deserialize(dict["following"] ?? .Null)
+                let createdAt = NullableSerializer(Serialization._StringSerializer).deserialize(dict["created_at"] ?? .Null)
+                let updatedAt = NullableSerializer(Serialization._StringSerializer).deserialize(dict["updated_at"] ?? .Null)
+                return GithubUser(login: login, id: id, avatarURL: avatarURL, url: url, name: name, htmlURL: htmlURL, type: type, followersURL: followersURL, followingURL: followingURL, gistsURL: gistsURL, starredURL: starredURL, subscriptionsURL: subscriptionsURL, organizationsURL: organizationsURL, reposURL: reposURL, eventsURL: eventsURL, receivedEventsURL: receivedEventsURL, siteAdmin: siteAdmin, company: company, blog: blog, location: location, email: email, hireable: hireable, bio: bio, publicRepos: publicRepos, publicGists: publicGists, followers: followers, following: following, createdAt: createdAt, updatedAt: updatedAt)
             default:
                 fatalError("JSON Type Error")
         }
