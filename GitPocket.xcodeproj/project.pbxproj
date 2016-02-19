@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
 		0E5C2F6D1C75742A00451288 /* UsersRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */; };
+		0E5CA6811C76B5C800E0AC00 /* AuthenticationRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */; };
 		0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249881C726FA300629372 /* FollowersViewController.swift */; };
 		0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498A1C7272A600629372 /* InitialViewController.swift */; };
 		0E62498D1C7272A600629372 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498B1C7272A600629372 /* WebViewController.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRoutes.swift; sourceTree = "<group>"; };
+		0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRoutes.swift; sourceTree = "<group>"; };
 		0E6249881C726FA300629372 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollowersViewController.swift; path = Followers/FollowersViewController.swift; sourceTree = "<group>"; };
 		0E62498A1C7272A600629372 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = OldAPIViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		0E62498B1C7272A600629372 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = OldAPIViewControllers/WebViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				0E9229E81C73F064009BC5FF /* GithubRequest.swift */,
 				0E9229EA1C7428AC009BC5FF /* GithubUser.swift */,
 				0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */,
+				0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */,
 			);
 			name = GitHubAPI;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				0E6249931C72730E00629372 /* String+Funcitionalities.swift in Sources */,
 				0E5C2F6D1C75742A00451288 /* UsersRoutes.swift in Sources */,
 				0E6249911C7272D000629372 /* TagButton.swift in Sources */,
+				0E5CA6811C76B5C800E0AC00 /* AuthenticationRoutes.swift in Sources */,
 				0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */,
 				0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */,
 				0E6249901C7272D000629372 /* GithubFeedCell.swift in Sources */,
