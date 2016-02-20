@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4BDBDD6B9840F9E432C8227D98CD51DC4619A033",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "29B17706A8021544FC10370C2235A0AED0B7D15A" : 0,
+    "4BDBDD6B9840F9E432C8227D98CD51DC4619A033" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C085021A-1E88-45E9-AF38-BDCC729258F0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "29B17706A8021544FC10370C2235A0AED0B7D15A" : "GithubPilot\/",
+    "4BDBDD6B9840F9E432C8227D98CD51DC4619A033" : "GitPocket\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GitPocket",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GitPocket.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jindulys\/GithubPilot.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "29B17706A8021544FC10370C2235A0AED0B7D15A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jindulys\/GitPocket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4BDBDD6B9840F9E432C8227D98CD51DC4619A033"
+    }
+  ]
+}

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GithubPilot
 
 public class InitialViewController: UIViewController {
     var tableView: UITableView = UITableView()

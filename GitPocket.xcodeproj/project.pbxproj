@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
-		0E5C2F6D1C75742A00451288 /* UsersRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */; };
-		0E5CA6811C76B5C800E0AC00 /* AuthenticationRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */; };
-		0E5CA6831C77F83400E0AC00 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6821C77F83400E0AC00 /* OAuth.swift */; };
-		0E5CA6851C780F4A00E0AC00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6841C780F4A00E0AC00 /* Constants.swift */; };
-		0E5CA6871C78121F00E0AC00 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6861C78121E00E0AC00 /* Github.swift */; };
-		0E5CA6891C781AAF00E0AC00 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6881C781AAF00E0AC00 /* GithubClient.swift */; };
 		0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249881C726FA300629372 /* FollowersViewController.swift */; };
 		0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498A1C7272A600629372 /* InitialViewController.swift */; };
 		0E62498D1C7272A600629372 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498B1C7272A600629372 /* WebViewController.swift */; };
@@ -26,7 +20,6 @@
 		0E62499B1C72735A00629372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249971C72735A00629372 /* User.swift */; };
 		0E62499F1C72738C00629372 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62499D1C72738C00629372 /* PullToRefresh.swift */; };
 		0E6249A01C72738C00629372 /* UIScrollView+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62499E1C72738C00629372 /* UIScrollView+PullToRefresh.swift */; };
-		0E6249A31C729A3200629372 /* GithubSerializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249A21C729A3200629372 /* GithubSerializers.swift */; };
 		0E6249A51C72B69D00629372 /* GithubModulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249A41C72B69D00629372 /* GithubModulerTests.swift */; };
 		0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BABE1B484654007C3EB4 /* AppDelegate.swift */; };
 		0E83BAC41B484654007C3EB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E83BAC21B484654007C3EB4 /* Main.storyboard */; };
@@ -35,8 +28,6 @@
 		0E83BACC1B484654007C3EB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E83BACA1B484654007C3EB4 /* LaunchScreen.storyboard */; };
 		0E83BAD71B484654007C3EB4 /* GitPocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAD61B484654007C3EB4 /* GitPocketTests.swift */; };
 		0E83BAE21B484654007C3EB4 /* GitPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */; };
-		0E9229E91C73F064009BC5FF /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9229E81C73F064009BC5FF /* GithubRequest.swift */; };
-		0E9229EB1C7428AC009BC5FF /* GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9229EA1C7428AC009BC5FF /* GithubUser.swift */; };
 		0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */; };
 		0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; };
 		0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
@@ -61,12 +52,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UsersRoutes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AuthenticationRoutes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0E5CA6821C77F83400E0AC00 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OAuth.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0E5CA6841C780F4A00E0AC00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0E5CA6861C78121E00E0AC00 /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Github.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0E5CA6881C781AAF00E0AC00 /* GithubClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubClient.swift; sourceTree = "<group>"; };
 		0E6249881C726FA300629372 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollowersViewController.swift; path = Followers/FollowersViewController.swift; sourceTree = "<group>"; };
 		0E62498A1C7272A600629372 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = OldAPIViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		0E62498B1C7272A600629372 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = OldAPIViewControllers/WebViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +64,6 @@
 		0E6249971C72735A00629372 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = OldAPI/User.swift; sourceTree = "<group>"; };
 		0E62499D1C72738C00629372 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		0E62499E1C72738C00629372 /* UIScrollView+PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PullToRefresh.swift"; sourceTree = "<group>"; };
-		0E6249A21C729A3200629372 /* GithubSerializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GithubSerializers.swift; path = GitHubAPI/GithubSerializers.swift; sourceTree = "<group>"; };
 		0E6249A41C72B69D00629372 /* GithubModulerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubModulerTests.swift; sourceTree = "<group>"; };
 		0E83BABB1B484654007C3EB4 /* GitPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BABE1B484654007C3EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,8 +78,6 @@
 		0E83BADD1B484654007C3EB4 /* GitPocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitPocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitPocketUITests.swift; sourceTree = "<group>"; };
 		0E83BAE31B484654007C3EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E9229E81C73F064009BC5FF /* GithubRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GithubRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0E9229EA1C7428AC009BC5FF /* GithubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUser.swift; sourceTree = "<group>"; };
 		0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+ImageLoader.swift"; path = "Extensions/UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0EC7AF531B63E17300EB9F6E /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCached.swift; path = Utilities/DiskCached.swift; sourceTree = "<group>"; };
 		0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketHelper.swift; path = Utilities/PocketHelper.swift; sourceTree = "<group>"; };
@@ -169,15 +151,6 @@
 		0E6249A11C72756A00629372 /* GitHubAPI */ = {
 			isa = PBXGroup;
 			children = (
-				0E6249A21C729A3200629372 /* GithubSerializers.swift */,
-				0E9229E81C73F064009BC5FF /* GithubRequest.swift */,
-				0E9229EA1C7428AC009BC5FF /* GithubUser.swift */,
-				0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */,
-				0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */,
-				0E5CA6821C77F83400E0AC00 /* OAuth.swift */,
-				0E5CA6841C780F4A00E0AC00 /* Constants.swift */,
-				0E5CA6861C78121E00E0AC00 /* Github.swift */,
-				0E5CA6881C781AAF00E0AC00 /* GithubClient.swift */,
 			);
 			name = GitHubAPI;
 			sourceTree = "<group>";
@@ -472,31 +445,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E6249931C72730E00629372 /* String+Funcitionalities.swift in Sources */,
-				0E5C2F6D1C75742A00451288 /* UsersRoutes.swift in Sources */,
 				0E6249911C7272D000629372 /* TagButton.swift in Sources */,
-				0E5CA6811C76B5C800E0AC00 /* AuthenticationRoutes.swift in Sources */,
 				0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */,
 				0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */,
 				0E6249901C7272D000629372 /* GithubFeedCell.swift in Sources */,
 				0E6249991C72735A00629372 /* NetEngine.swift in Sources */,
 				0E6249A01C72738C00629372 /* UIScrollView+PullToRefresh.swift in Sources */,
-				0E6249A31C729A3200629372 /* GithubSerializers.swift in Sources */,
-				0E9229EB1C7428AC009BC5FF /* GithubUser.swift in Sources */,
 				0E62499B1C72735A00629372 /* User.swift in Sources */,
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
 				0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */,
-				0E5CA6831C77F83400E0AC00 /* OAuth.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
-				0E9229E91C73F064009BC5FF /* GithubRequest.swift in Sources */,
 				0E62498D1C7272A600629372 /* WebViewController.swift in Sources */,
 				0E62499A1C72735A00629372 /* Repo.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
 				0E62499F1C72738C00629372 /* PullToRefresh.swift in Sources */,
 				0E6249981C72735A00629372 /* Event.swift in Sources */,
-				0E5CA6871C78121F00E0AC00 /* Github.swift in Sources */,
 				0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */,
-				0E5CA6851C780F4A00E0AC00 /* Constants.swift in Sources */,
-				0E5CA6891C781AAF00E0AC00 /* GithubClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

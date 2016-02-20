@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GithubPilot
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
