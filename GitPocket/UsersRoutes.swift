@@ -9,7 +9,7 @@
 import Foundation
 
 public class UsersRoutes {
-    public let client: GithubNetWorkClient
+    public unowned let client: GithubNetWorkClient
     init(client: GithubNetWorkClient) {
         self.client = client
     }

@@ -16,6 +16,7 @@ public class Github {
     public static func setupClientID(clientID: String, clientSecret: String, scope:[String], redirectURI: String) {
         precondition(GithubAuthManager.sharedAuthManager == nil, "Only call `Github.setupClientID` once")
         GithubAuthManager.sharedAuthManager = GithubAuthManager(clientID: clientID, clientSecret: clientSecret, scope: scope, redirectURI: redirectURI)
+        GithubManager.sharedManager = GithubManager()
     }
     
     public static func authenticate() {
@@ -30,15 +31,16 @@ public class Github {
 }
 
 /// Used for monitor Notification
-class GithubManager {
+class GithubManager: NSObject {
     static var sharedManager: GithubManager!
     
-    init() {
+    override init() {
+        super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"receivedGithubAccessToken", name: Constants.NotificationKey.GithubAccessTokenRequestSuccess, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "receivedGithubAccessTokenFailure", name: Constants.NotificationKey.GithubAccessTokenRequestFailure, object: nil)
     }
     
-    func receivedGithubAccessToken(notification: NSNotification) {
+    func receivedGithubAccessToken() {
         precondition(GithubAuthManager.sharedAuthManager != nil, "Call `Github.setupClientID` before calling this method")
         precondition(Github.authorizedClient == nil, "Client has already been authorized")
         
@@ -47,7 +49,7 @@ class GithubManager {
         }
     }
     
-    func receivedGithubAccessTokenFailure(notification: NSNotification) {
+    func receivedGithubAccessTokenFailure() {
         // TODO: save the error to display to the user
         print("Failed to get access token")
     }

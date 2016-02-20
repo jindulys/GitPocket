@@ -103,8 +103,9 @@ class GithubAuthenticationRoutes {
             } else {
                 if let tokenResponse = NSString(data:d, encoding: NSASCIIStringEncoding) as? String {
                     complitionHandler(tokenResponse, nil)
+                } else {
+                    complitionHandler(nil,.UnknownResponse("could not decode response data"))
                 }
-                complitionHandler(nil,.UnknownResponse("could not decode response data"))
             }
         }
         

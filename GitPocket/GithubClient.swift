@@ -12,6 +12,8 @@ import Alamofire
 public class GithubClient: GithubNetWorkClient {
     let accessToken: String
     
+    public var users: UsersRoutes!
+    
     public override func additionalHeaders(needoauth: Bool) -> [String : String] {
         var headers: [String: String] = [:]
         if (needoauth) {
@@ -33,5 +35,6 @@ public class GithubClient: GithubNetWorkClient {
     init(accessToken: String, manager: Alamofire.Manager, baseHosts: [String: String]) {
         self.accessToken = accessToken
         super.init(manager: manager, baseHosts: baseHosts)
+        self.users = UsersRoutes(client: self)
     }
 }
