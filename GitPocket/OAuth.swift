@@ -54,8 +54,7 @@ public class GithubAuthManager {
     
     public func requestAccessToken(url: NSURL) {
         guard let code = url.query?.componentsSeparatedByString("code=").last else { return }
-        
-        self.oAuthRouter.requestAccessToken(self.clientID, clientSecret: self.clientSecret, code: code).response { (tokenString, requestError) -> Void in
+        self.oAuthRouter.requestAccessToken(self.clientID, clientSecret: self.clientSecret, code: code) { (tokenString, requestError) -> Void in
             if let error = requestError {
                 self.oAuthResult = .Error(error.description)
                 NSNotificationCenter.defaultCenter().postNotificationName(Constants.NotificationKey.GithubAccessTokenRequestFailure, object: nil)

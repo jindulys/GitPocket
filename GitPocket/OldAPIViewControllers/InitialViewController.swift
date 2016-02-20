@@ -28,14 +28,19 @@ public class InitialViewController: UIViewController {
         setupViews()
         
         // Set NetEngine
-        self.netEngine = NetEngine.SharedInstance
+//        self.netEngine = NetEngine.SharedInstance
+//        
+//        guard let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String else {
+//            self.netEngine?.requestOAuthAccess()
+//            return
+//        }
+//        hasToken = true
+//        self.netEngine?.token = token
         
-        guard let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String else {
-            self.netEngine?.requestOAuthAccess()
-            return
-        }
-        hasToken = true
-        self.netEngine?.token = token
+        
+        // New way to request
+        Github.setupClientID("bf39a01edfbf0035cb42", clientSecret: "fd9c0462e830bc6936a217975b024e703d32adc0", scope: ["user", "repo"], redirectURI: "gitpocket://admin")
+        Github.authenticate()
     }
     
     override public func viewDidAppear(animated: Bool) {

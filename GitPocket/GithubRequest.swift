@@ -131,12 +131,13 @@ public class RpcRequest<RType: JSONSerializer, EType: JSONSerializer>: GithubReq
      - parameter method:             HTTP Method.
      - parameter params:             url parameters.
      - parameter postParams:         HTTP Body parameters used for POST Request.
+     - parameter postData:           HTTP Body parameters used with NSData format.
      - parameter responseSerializer: responseSerializer used to generate response object.
      - parameter errorSerializer:    errorSerializer.
      
      - returns: an initialized RpcRequest.
      */
-    init(client: GithubNetWorkClient, host: String, route: String, method: Alamofire.Method, params:[String: String] = ["": ""], postParams: JSON? = nil, responseSerializer: RType, errorSerializer: EType) {
+    init(client: GithubNetWorkClient, host: String, route: String, method: Alamofire.Method, params:[String: String] = ["": ""], postParams: JSON? = nil, postData: NSData? = nil, responseSerializer: RType, errorSerializer: EType) {
         let url = "\(client.baseHosts[host]!)\(route)"
         var headers = ["Content-Type": "application/json"]
         let needOauth = (host == "api")
@@ -153,6 +154,15 @@ public class RpcRequest<RType: JSONSerializer, EType: JSONSerializer>: GithubReq
                     request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers, encoding: ParameterEncoding.Custom({ (convertible, _) -> (NSMutableURLRequest, NSError?) in
                         let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
                         mutableRequest.HTTPBody = dumpJSON(pParams)
+                        return (mutableRequest, nil)
+                    }))
+                } else if let pData = postData {
+                    request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers, encoding: ParameterEncoding.Custom({ (convertible, _) -> (NSMutableURLRequest, NSError?) in
+                        let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+                        let length = pData.length
+                        mutableRequest.setValue("\(length)", forHTTPHeaderField: "Content-Length")
+                        mutableRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                        mutableRequest.HTTPBody = pData
                         return (mutableRequest, nil)
                     }))
                 } else {

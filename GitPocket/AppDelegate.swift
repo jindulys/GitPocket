@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        self.netEngine.requestTokenFromURL(url)
+        //self.netEngine.requestTokenFromURL(url)
+        Github.requestAccessToken(url)
         return true
     }
     

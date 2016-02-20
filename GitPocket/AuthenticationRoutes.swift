@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class GithubAuthentication {
     let id: Int32
@@ -45,28 +46,20 @@ class GithubAuthenticationSerializer: JSONSerializer {
     }
 }
 
-class GithubAccessTokenRequest {
-    let clientID: String
-    let clientSecret: String
-    let code: String
+enum AuthorizationError: CustomStringConvertible {
+    case InvalidParameter
+    case HTTPError(String)
+    case UnknownResponse(String)
     
-    init(clientID: String, clientSecret: String, code: String) {
-        self.clientID = clientID
-        self.clientSecret = clientSecret
-        self.code = code
-    }
-}
-
-class GithubAccessTokenRequestSerializer: JSONSerializer {
-    init() { }
-    
-    func serialize(value: GithubAccessTokenRequest) -> JSON {
-        let retVal = "client_id=\(value.clientID)&client_secret=\(value.clientSecret)&code=\(value.code)"
-        return .Str(retVal)
-    }
-    
-    func deserialize(json: JSON) -> GithubAccessTokenRequest {
-        fatalError("No Need for deserialize Access Token")
+    var description: String {
+        switch self {
+            case .InvalidParameter:
+                return "Invalid Parameter please check your parameter format"
+            case .HTTPError(let error):
+                return "HTTP Error :\(error)"
+            case .UnknownResponse(let error):
+                return "Unknown response :\(error)"
+        }
     }
 }
 
@@ -88,8 +81,32 @@ class GithubAuthenticationRoutes {
         }
     }
     
-    func requestAccessToken(clientID: String, clientSecret: String, code: String) -> RpcRequest<StringSerializer, StringSerializer> {
-        let accessTokenRequest = GithubAccessTokenRequest(clientID: clientID, clientSecret: clientSecret, code: code)
-        return RpcRequest(client: self.client, host: "login", route: "/login/oauth/access_token", method: .POST, params: ["":""], postParams: GithubAccessTokenRequestSerializer().serialize(accessTokenRequest), responseSerializer: StringSerializer(), errorSerializer: StringSerializer())
+    // TODO: deal with error, might be create error ENUM for authentication
+    func requestAccessToken(clientID: String, clientSecret: String, code: String, complitionHandler: (String?, AuthorizationError?)->Void) {
+        let url = "\(self.client.baseHosts["login"]!)/login/oauth/access_token"
+        let accessTokenRequest = "client_id=\(clientID)&client_secret=\(clientSecret)&code=\(code)"
+        guard let postData = accessTokenRequest.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true) else {
+            return complitionHandler(nil,.InvalidParameter)
+        }
+    
+        Alamofire.request(.POST, url, parameters: ["":""], encoding:  ParameterEncoding.Custom({ (convertible, _) -> (NSMutableURLRequest, NSError?) in
+            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+            let length = postData.length
+            mutableRequest.setValue("\(length)", forHTTPHeaderField: "Content-Length")
+            mutableRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            mutableRequest.HTTPBody = postData
+            return (mutableRequest, nil)
+        }), headers: nil).response { (request, response, data, error) -> Void in
+            let d = data!
+            if error != nil {
+                complitionHandler(nil, .HTTPError("Request Error, code: \(response?.statusCode) description:\(error?.localizedDescription)"))
+            } else {
+                if let tokenResponse = NSString(data:d, encoding: NSASCIIStringEncoding) as? String {
+                    complitionHandler(tokenResponse, nil)
+                }
+                complitionHandler(nil,.UnknownResponse("could not decode response data"))
+            }
+        }
+        
     }
 }
