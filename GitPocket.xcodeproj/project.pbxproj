@@ -10,6 +10,9 @@
 		0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
 		0E5C2F6D1C75742A00451288 /* UsersRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */; };
 		0E5CA6811C76B5C800E0AC00 /* AuthenticationRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */; };
+		0E5CA6831C77F83400E0AC00 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6821C77F83400E0AC00 /* OAuth.swift */; };
+		0E5CA6851C780F4A00E0AC00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6841C780F4A00E0AC00 /* Constants.swift */; };
+		0E5CA6871C78121F00E0AC00 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6861C78121E00E0AC00 /* Github.swift */; };
 		0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249881C726FA300629372 /* FollowersViewController.swift */; };
 		0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498A1C7272A600629372 /* InitialViewController.swift */; };
 		0E62498D1C7272A600629372 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498B1C7272A600629372 /* WebViewController.swift */; };
@@ -59,6 +62,9 @@
 /* Begin PBXFileReference section */
 		0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRoutes.swift; sourceTree = "<group>"; };
 		0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRoutes.swift; sourceTree = "<group>"; };
+		0E5CA6821C77F83400E0AC00 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		0E5CA6841C780F4A00E0AC00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0E5CA6861C78121E00E0AC00 /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
 		0E6249881C726FA300629372 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollowersViewController.swift; path = Followers/FollowersViewController.swift; sourceTree = "<group>"; };
 		0E62498A1C7272A600629372 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = OldAPIViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		0E62498B1C7272A600629372 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = OldAPIViewControllers/WebViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +172,9 @@
 				0E9229EA1C7428AC009BC5FF /* GithubUser.swift */,
 				0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */,
 				0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */,
+				0E5CA6821C77F83400E0AC00 /* OAuth.swift */,
+				0E5CA6841C780F4A00E0AC00 /* Constants.swift */,
+				0E5CA6861C78121E00E0AC00 /* Github.swift */,
 			);
 			name = GitHubAPI;
 			sourceTree = "<group>";
@@ -473,6 +482,7 @@
 				0E62499B1C72735A00629372 /* User.swift in Sources */,
 				0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */,
 				0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */,
+				0E5CA6831C77F83400E0AC00 /* OAuth.swift in Sources */,
 				0E83BAC71B484654007C3EB4 /* GitPocket.xcdatamodeld in Sources */,
 				0E9229E91C73F064009BC5FF /* GithubRequest.swift in Sources */,
 				0E62498D1C7272A600629372 /* WebViewController.swift in Sources */,
@@ -480,7 +490,9 @@
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
 				0E62499F1C72738C00629372 /* PullToRefresh.swift in Sources */,
 				0E6249981C72735A00629372 /* Event.swift in Sources */,
+				0E5CA6871C78121F00E0AC00 /* Github.swift in Sources */,
 				0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */,
+				0E5CA6851C780F4A00E0AC00 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
