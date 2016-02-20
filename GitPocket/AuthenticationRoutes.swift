@@ -71,8 +71,8 @@ class GithubAccessTokenRequestSerializer: JSONSerializer {
 }
 
 class GithubAuthenticationRoutes {
-    unowned let client: GithubClient
-    init(client: GithubClient) {
+    unowned let client: GithubNetWorkClient
+    init(client: GithubNetWorkClient) {
         self.client = client
     }
     

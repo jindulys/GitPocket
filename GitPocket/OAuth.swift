@@ -19,12 +19,14 @@ public class GithubAuthManager {
     let clientSecret: String
     let redirectURI: String
     let oAuthRouter: GithubAuthenticationRoutes
-    let oAuthClient: GithubClient
+    let oAuthClient: GithubNetWorkClient
     let scope: [String]
     
     var code: String?
     var accessToken: String?
     var oAuthResult: GithubAuthResult?
+    
+    public static var sharedAuthManager: GithubAuthManager!
 
     init(clientID: String, clientSecret: String, scope:[String], redirectURI: String) {
         self.clientID = clientID
@@ -35,7 +37,7 @@ public class GithubAuthManager {
         configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
         let manager = Alamofire.Manager(configuration:configuration)
         manager.startRequestsImmediately = false
-        self.oAuthClient = GithubClient(manager: manager,
+        self.oAuthClient = GithubNetWorkClient(manager: manager,
                                         baseHosts: [
                                             "login": "https://github.com",
                                             "api": "https://api.github.com"])

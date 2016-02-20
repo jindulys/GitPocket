@@ -13,6 +13,7 @@
 		0E5CA6831C77F83400E0AC00 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6821C77F83400E0AC00 /* OAuth.swift */; };
 		0E5CA6851C780F4A00E0AC00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6841C780F4A00E0AC00 /* Constants.swift */; };
 		0E5CA6871C78121F00E0AC00 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6861C78121E00E0AC00 /* Github.swift */; };
+		0E5CA6891C781AAF00E0AC00 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CA6881C781AAF00E0AC00 /* GithubClient.swift */; };
 		0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249881C726FA300629372 /* FollowersViewController.swift */; };
 		0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498A1C7272A600629372 /* InitialViewController.swift */; };
 		0E62498D1C7272A600629372 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498B1C7272A600629372 /* WebViewController.swift */; };
@@ -60,11 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRoutes.swift; sourceTree = "<group>"; };
-		0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationRoutes.swift; sourceTree = "<group>"; };
-		0E5CA6821C77F83400E0AC00 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		0E5C2F6C1C75742A00451288 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UsersRoutes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0E5CA6801C76B5C800E0AC00 /* AuthenticationRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AuthenticationRoutes.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0E5CA6821C77F83400E0AC00 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OAuth.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0E5CA6841C780F4A00E0AC00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0E5CA6861C78121E00E0AC00 /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
+		0E5CA6861C78121E00E0AC00 /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Github.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0E5CA6881C781AAF00E0AC00 /* GithubClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubClient.swift; sourceTree = "<group>"; };
 		0E6249881C726FA300629372 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollowersViewController.swift; path = Followers/FollowersViewController.swift; sourceTree = "<group>"; };
 		0E62498A1C7272A600629372 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = OldAPIViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		0E62498B1C7272A600629372 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = OldAPIViewControllers/WebViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		0E83BADD1B484654007C3EB4 /* GitPocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitPocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E83BAE11B484654007C3EB4 /* GitPocketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitPocketUITests.swift; sourceTree = "<group>"; };
 		0E83BAE31B484654007C3EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E9229E81C73F064009BC5FF /* GithubRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
+		0E9229E81C73F064009BC5FF /* GithubRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GithubRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0E9229EA1C7428AC009BC5FF /* GithubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUser.swift; sourceTree = "<group>"; };
 		0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+ImageLoader.swift"; path = "Extensions/UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0EC7AF531B63E17300EB9F6E /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCached.swift; path = Utilities/DiskCached.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				0E5CA6821C77F83400E0AC00 /* OAuth.swift */,
 				0E5CA6841C780F4A00E0AC00 /* Constants.swift */,
 				0E5CA6861C78121E00E0AC00 /* Github.swift */,
+				0E5CA6881C781AAF00E0AC00 /* GithubClient.swift */,
 			);
 			name = GitHubAPI;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				0E5CA6871C78121F00E0AC00 /* Github.swift in Sources */,
 				0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */,
 				0E5CA6851C780F4A00E0AC00 /* Constants.swift in Sources */,
+				0E5CA6891C781AAF00E0AC00 /* GithubClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

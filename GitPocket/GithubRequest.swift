@@ -9,9 +9,13 @@
 import Foundation
 import Alamofire
 
-public class GithubClient {
+public class GithubNetWorkClient {
     var manager: Alamofire.Manager
     var baseHosts: [String: String]
+    
+    func additionalHeaders(needoauth: Bool) -> [String: String] {
+        return [:]
+    }
     
     init(manager: Alamofire.Manager, baseHosts: [String: String]) {
         self.manager = manager
@@ -132,9 +136,13 @@ public class RpcRequest<RType: JSONSerializer, EType: JSONSerializer>: GithubReq
      
      - returns: an initialized RpcRequest.
      */
-    init(client: GithubClient, host: String, route: String, method: Alamofire.Method, params:[String: String] = ["": ""], postParams: JSON? = nil, responseSerializer: RType, errorSerializer: EType) {
+    init(client: GithubNetWorkClient, host: String, route: String, method: Alamofire.Method, params:[String: String] = ["": ""], postParams: JSON? = nil, responseSerializer: RType, errorSerializer: EType) {
         let url = "\(client.baseHosts[host]!)\(route)"
-        let headers = ["Content-Type": "application/json"]
+        var headers = ["Content-Type": "application/json"]
+        let needOauth = (host == "api")
+        for (header, val) in client.additionalHeaders(needOauth) {
+            headers[header] = val
+        }
         
         var request: Alamofire.Request
         switch method {

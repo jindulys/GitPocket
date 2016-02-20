@@ -9,8 +9,8 @@
 import Foundation
 
 public class UsersRoutes {
-    public let client: GithubClient
-    init(client: GithubClient) {
+    public let client: GithubNetWorkClient
+    init(client: GithubNetWorkClient) {
         self.client = client
     }
     
