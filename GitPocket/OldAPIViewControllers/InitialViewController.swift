@@ -92,7 +92,7 @@ public class InitialViewController: UIViewController {
     
     func loadMoreData() {
         print("Half way Loading more data!")
-        
+        print("Current Page: \(currentPage)")
         self.netEngine?.requestEventWithPage(++currentPage) { (events, error) -> Void in
             if let results = events {
                 self.events?.appendContentsOf(results)
