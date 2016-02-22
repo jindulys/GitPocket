@@ -44,7 +44,7 @@ class GithubFeedCell: UITableViewCell
         self.avatarView.load(avatarURL!)
         
         // user name
-        self.userNameLabel.text = event.actor?.name
+        self.userNameLabel.text = event.actor?.login
         
         // user action
         self.actionLabel.text = event.type.rawValue
