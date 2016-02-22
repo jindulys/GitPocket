@@ -4,5 +4,5 @@ Personal github client -- A Demo to show events you will receive on Github Main 
 
 Using `GithubPilot 1.0.0` to feed this app.
 
-<img src="https://github.com/jindulys/GitPocket/blob/master/GitPocket/Img/githubpilotv1.png" alt="alt text" width="500" height="600">
+<img src="https://github.com/jindulys/GitPocket/blob/master/GitPocket/Img/githubpilotv1.png" alt="alt text" width="280" height="500">
 
