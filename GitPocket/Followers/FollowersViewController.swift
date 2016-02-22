@@ -17,58 +17,58 @@ public class FollowersViewController: UIViewController {
         if let client = Github.authorizedClient {
             print("Exist Client")
             
-//            client.users.getUser(username: "onevcat").response({ (githubUser, error) -> Void in
-//                if let user = githubUser {
-//                    print(user.description)
-//                } else {
-//                    print(error?.description)
-//                }
-//            })
-//            
-//            client.users.getAuthenticatedUser().response({ user, requestError in
-//                if let me = user {
-//                    print(me.description)
-//                } else {
-//                    print(requestError?.description)
-//                }
-//            })
-//            
-//            client.users.getAllUsers("1209").response({ (httpResponse, users, requestError) -> Void in
-//                if let response = httpResponse {
-//                    print("Since   :\(response)")
-//                }
-//                if let result = users {
-//                    for user in result {
-//                        print(user.description)
-//                    }
-//                } else {
-//                    print(requestError?.description)
-//                }
-//            })
-//            
-//            client.repos.getAuthenticatedUserRepos().response({ (result, error) -> Void in
-//                if let repos = result {
-//                    print(repos.count)
-//                    for i in repos {
-//                        print(i.name)
-//                        print(i.stargazersCount)
-//                    }
-//                }
-//                
-//                if let requestError = error {
-//                    print(requestError.description)
-//                }
-//            })
-//            
-//            client.repos.getRepo("Yep", owner: "CatchChat").response({ (result, error) -> Void in
-//                if let repo = result {
-//                    print(repo.name)
-//                }
-//                
-//                if let requestError = error {
-//                    print(requestError.description)
-//                }
-//            })
+            client.users.getUser(username: "onevcat").response({ (githubUser, error) -> Void in
+                if let user = githubUser {
+                    print(user.description)
+                } else {
+                    print(error?.description)
+                }
+            })
+            
+            client.users.getAuthenticatedUser().response({ user, requestError in
+                if let me = user {
+                    print(me.description)
+                } else {
+                    print(requestError?.description)
+                }
+            })
+            
+            client.users.getAllUsers("1209").response({ (httpResponse, users, requestError) -> Void in
+                if let response = httpResponse {
+                    print("Since   :\(response)")
+                }
+                if let result = users {
+                    for user in result {
+                        print(user.description)
+                    }
+                } else {
+                    print(requestError?.description)
+                }
+            })
+            
+            client.repos.getAuthenticatedUserRepos().response({ (result, error) -> Void in
+                if let repos = result {
+                    print(repos.count)
+                    for i in repos {
+                        print(i.name)
+                        print(i.stargazersCount)
+                    }
+                }
+                
+                if let requestError = error {
+                    print(requestError.description)
+                }
+            })
+            
+            client.repos.getRepo("Yep", owner: "CatchChat").response({ (result, error) -> Void in
+                if let repo = result {
+                    print(repo.name)
+                }
+                
+                if let requestError = error {
+                    print(requestError.description)
+                }
+            })
             
             // TODO: How to more elegantly deal with recursive call. 
             client.repos.getRepoFrom(owner: "onevcat").response({ (nextPage, result, error) -> Void in
