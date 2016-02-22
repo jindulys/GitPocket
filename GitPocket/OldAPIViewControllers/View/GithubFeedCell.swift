@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GithubPilot
 
 @available(iOS 9.0, *)
 class GithubFeedCell: UITableViewCell
@@ -33,7 +34,7 @@ class GithubFeedCell: UITableViewCell
         setupViews()
     }
     
-    func configureCellWithConfigureBlock(event:Event) {
+    func configureCellWithConfigureBlock(event:GithubEvent) {
         //First clean the initial view
         self.avatarView.image = nil
         
@@ -43,10 +44,10 @@ class GithubFeedCell: UITableViewCell
         self.avatarView.load(avatarURL!)
         
         // user name
-        self.userNameLabel.text = event.actor?.userName
+        self.userNameLabel.text = event.actor?.name
         
         // user action
-        self.actionLabel.text = event.type?.rawValue
+        self.actionLabel.text = event.type.rawValue
         
         // repo name
         self.clientLabel.text = event.repo?.name

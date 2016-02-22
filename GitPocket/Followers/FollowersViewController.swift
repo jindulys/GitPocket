@@ -70,6 +70,7 @@ public class FollowersViewController: UIViewController {
 //                }
 //            })
             
+            // TODO: How to more elegantly deal with recursive call. 
             client.repos.getRepoFrom(owner: "onevcat").response({ (nextPage, result, error) -> Void in
                 if let page = nextPage {
                     print("Next !!!! Page !!! is \(page)")
@@ -99,6 +100,21 @@ public class FollowersViewController: UIViewController {
                 if let requestError = error {
                     print(requestError.description)
                 }
+            })
+            
+            client.events.getReceivedEventsForUser("jindulys").response({ (nextPage, result, error) -> Void in
+                if let page = nextPage {
+                    print("next page\(page)")
+                }
+                
+                if let events = result {
+                    print(events.count)
+                    for i in events {
+                        print(i.actor)
+                        print(i.repo)
+                    }
+                }
+
             })
         }
     }

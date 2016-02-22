@@ -13,31 +13,25 @@ import GithubPilot
 public class InitialViewController: UIViewController {
     var tableView: UITableView = UITableView()
     var netEngine: NetEngine?
-    var events: [Event]?
+    var events: [GithubEvent]?
     var hasToken: Bool = false
     var currentPage: Int = 1
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "User"
+        self.navigationItem.title = "Recently Happened"
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : AnyObject]
+        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#2d8ed7")
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         // Add observer
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadView", name: kGitPocketSuccessfullyGetTokenKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadView", name: Constants.NotificationKey.GithubAccessTokenRequestSuccess, object: nil)
         
         // Setup subviews
         
         setupViews()
-        
-        // Set NetEngine
-//        self.netEngine = NetEngine.SharedInstance
-//        
-//        guard let token = NSUserDefaults.standardUserDefaults().valueForKey("Token") as? String else {
-//            self.netEngine?.requestOAuthAccess()
-//            return
-//        }
-//        hasToken = true
-//        self.netEngine?.token = token
-        
         
         // New way to request
         Github.setupClientID("bf39a01edfbf0035cb42", clientSecret: "fd9c0462e830bc6936a217975b024e703d32adc0", scope: ["user", "repo"], redirectURI: "gitpocket://admin")
@@ -48,13 +42,16 @@ public class InitialViewController: UIViewController {
         super.viewDidAppear(animated)
         // Add PullToRefresh
         self.tableView.addPullToRefresh(PullToRefresh()) { () -> () in
-            self.netEngine?.requestEventWithCompletionHandler({ (events, error) -> Void in
-                if let results = events {
-                    self.mergeNewEvents(results)
-                    self.tableView.reloadData()
-                }
-                self.tableView.endRefresing()
-            })
+            
+            if let client = Github.authorizedClient {
+                client.events.getReceivedEventsForUser("jindulys", page: "1").response({ (nextpage, results, error) -> Void in
+                    if let events = results {
+                        self.mergeNewEvents(events)
+                        self.tableView.reloadData()
+                    }
+                    self.tableView.endRefresing()
+                })
+            }
         }
         
         if hasToken {
@@ -93,31 +90,33 @@ public class InitialViewController: UIViewController {
     func loadMoreData() {
         print("Half way Loading more data!")
         print("Current Page: \(currentPage)")
-        self.netEngine?.requestEventWithPage(++currentPage) { (events, error) -> Void in
-            if let results = events {
-                self.events?.appendContentsOf(results)
-                self.tableView.reloadData()
-            }
-            self.tableView.endRefresing()
+        if let client = Github.authorizedClient {
+            client.events.getReceivedEventsForUser("jindulys", page: String(self.currentPage)).response({ (nextPage, results, error) -> Void in
+                if let events = results {
+                    self.events?.appendContentsOf(events)
+                    self.tableView.reloadData()
+                }
+                self.tableView.endRefresing()
+                self.currentPage = self.currentPage + 1
+            })
         }
     }
     
-    func mergeNewEvents(newEvent:[Event]) {
+    func mergeNewEvents(newEvent:[GithubEvent]) {
         guard let originalEvents = self.events else {
             self.events = newEvent
             return
         }
         var identicalIndex = -1
         for (index, value) in newEvent.enumerate() {
-            if let currentID = value.eventID {
-                if currentID == originalEvents[0].eventID! {
-                    identicalIndex = index
-                    break
-                }
+            let currentID = value.id
+            if currentID == originalEvents[0].id {
+                identicalIndex = index
+                break
             }
         }
         
-        var arrayToMergeInto:[Event]
+        var arrayToMergeInto:[GithubEvent]
         if identicalIndex >= 0 {
             arrayToMergeInto = Array(newEvent[0..<identicalIndex])
         } else {
@@ -166,15 +165,15 @@ extension InitialViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let event = events![indexPath.row]
         if let repo = event.repo  {
-            repo.getRepoFullInfoWithCompletionHander(){
-                [unowned self] in
-                if let repoURL = repo.homeURL {
-                    dispatch_async(dispatch_get_main_queue()) {
+            
+            if let client = Github.authorizedClient {
+                client.repos.getAPIRepo(url: repo.url!).response({ (result, error) -> Void in
+                    if let repo = result {
                         let webVC = WebViewController()
-                        webVC.webURL = repoURL
+                        webVC.webURL = repo.htmlURL
                         self.navigationController?.pushViewController(webVC, animated: true)
                     }
-                }
+                })
             }
         }
     }

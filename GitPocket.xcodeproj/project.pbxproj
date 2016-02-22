@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E28259C1BB263FC00CD20B6 /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
+		0E29C2E21C7A9FA900B1F306 /* SwiftHEXColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E29C2E11C7A9FA900B1F306 /* SwiftHEXColors.swift */; };
 		0E6249891C726FA300629372 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6249881C726FA300629372 /* FollowersViewController.swift */; };
 		0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498A1C7272A600629372 /* InitialViewController.swift */; };
 		0E62498D1C7272A600629372 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62498B1C7272A600629372 /* WebViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E29C2E11C7A9FA900B1F306 /* SwiftHEXColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHEXColors.swift; sourceTree = "<group>"; };
 		0E6249881C726FA300629372 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollowersViewController.swift; path = Followers/FollowersViewController.swift; sourceTree = "<group>"; };
 		0E62498A1C7272A600629372 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = OldAPIViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		0E62498B1C7272A600629372 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = OldAPIViewControllers/WebViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 		0ED1BA891B61DC9500245A90 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0E29C2E11C7A9FA900B1F306 /* SwiftHEXColors.swift */,
 				0EC7AF531B63E17300EB9F6E /* DiskCached.swift */,
 				0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */,
 				0E62499C1C72738C00629372 /* PullToRefresh */,
@@ -459,6 +462,7 @@
 				0E62499A1C72735A00629372 /* Repo.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
 				0E62499F1C72738C00629372 /* PullToRefresh.swift in Sources */,
+				0E29C2E21C7A9FA900B1F306 /* SwiftHEXColors.swift in Sources */,
 				0E6249981C72735A00629372 /* Event.swift in Sources */,
 				0E62498C1C7272A600629372 /* InitialViewController.swift in Sources */,
 			);

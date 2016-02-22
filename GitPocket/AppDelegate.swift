@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        //self.netEngine.requestTokenFromURL(url)
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         Github.requestAccessToken(url)
         return true
     }
