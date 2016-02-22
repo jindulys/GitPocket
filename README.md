@@ -1,10 +1,10 @@
 # GitPocket
 
-![](https://travis-ci.org/jindulys/GitPocket.svg?branch=master)
+Personal github client
 
-personal github client
+Using swift 2.0, support iOS 9.0
 
-using swift 2.0, support iOS 9.0
+Using GithubPilot 1.0.0 to feed this app.
 
-![V1.0](GitPocket/Img/v1.0.png)
+![V1.0](GitPocket/Img/githubpilotv1.png)
 
