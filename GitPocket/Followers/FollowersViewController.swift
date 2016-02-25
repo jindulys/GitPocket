@@ -74,6 +74,8 @@ public class FollowersViewController: UIViewController {
 //                }
 //            })
             
+            
+            
             client.stars.getStargazersFor(repo: "Yep", owner: "CatchChat", page: "1").response({ (nextPage, result, error) -> Void in
                 if let users = result {
 //                    for i in users {
@@ -87,31 +89,80 @@ public class FollowersViewController: UIViewController {
                 }
             })
             
-            var aggregatedresult:[GithubUser] = []
-            var recursiveBlock: (String, String, String) -> () = {(_, _, _) in }
-            recursiveBlock = { repo, owner, page in
-                client.stars.getStargazersFor(repo: repo, owner: owner, page: page).response({(nextPage, result, error) -> Void in
-                    if let users = result {
-                        print(users.count)
-                        self.myTestResult.appendContentsOf(users)
-                    }
-                    
-                    if let vpage = nextPage {
-                        print("Next page is:\(vpage)")
-                        if vpage == "1" {
-                            print("Here")
-                            NSNotificationCenter.defaultCenter().postNotificationName("TestName", object: nil)
-                        } else {
-                            recursiveBlock(repo, owner, vpage)
-                        }
-                    }
-                })
+            // Notification Implementation
+//            var aggregatedresult:[GithubUser] = []
+//            var recursiveBlock: (String, String, String) -> () = {(_, _, _) in }
+//            recursiveBlock = { repo, owner, page in
+//                client.stars.getStargazersFor(repo: repo, owner: owner, page: page).response({(nextPage, result, error) -> Void in
+//                    if let users = result {
+//                        print(users.count)
+//                        self.myTestResult.appendContentsOf(users)
+//                    }
+//                    
+//                    if let vpage = nextPage {
+//                        print("Next page is:\(vpage)")
+//                        if vpage == "1" {
+//                            print("Here")
+//                            NSNotificationCenter.defaultCenter().postNotificationName("TestName", object: nil)
+//                        } else {
+//                            recursiveBlock(repo, owner, vpage)
+//                        }
+//                    }
+//                })
+//                
+//            }
+//
+//            recursiveBlock("Yep", "CatchChat", "1")
+            
+            
+            // Could not work because semaphore at main queue, and response at main queue, which cause block.
+            
+//            let semaphore = dispatch_semaphore_create(0)
+//            var recursiveBlock: (String, String, String) -> () = {(_, _, _) in }
+//            recursiveBlock = { repo, owner, page in
+//                client.stars.getStargazersFor(repo: repo, owner: owner, page: page).response({(nextPage, result, error) -> Void in
+//                    if let users = result {
+//                        print(users.count)
+//                        self.myTestResult.appendContentsOf(users)
+//                    }
+//                    
+//                    if let vpage = nextPage {
+//                        print("Next page is:\(vpage)")
+//                        if vpage == "1" {
+//                            print("Here")
+//                            dispatch_semaphore_signal(semaphore)
+//                        } else {
+//                            recursiveBlock(repo, owner, vpage)
+//                        }
+//                    }
+//                })
+//                
+//            }
+//            
+//            recursiveBlock("Yep", "CatchChat", "1")
+//            let timeoutTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * NSEC_PER_SEC))
+//            print("Begin Wait")
+//            if dispatch_semaphore_wait(semaphore, timeoutTime) != 0 {
+//                print("time out happened")
+//            }
+//            print("Wait at here")
+            
+            // Yup, Success, 
+            // 1. get all the results, then return back
+            // 2. change to main thread!
+            client.stars.getAllStargazersFor(repo: "Yep", owner: "CatchChatlll"){
+                result, error in
                 
+                if let users = result {
+                    print(users.count)
+                }
+                
+                if let error = error {
+                    print(error)
+                }
             }
 
-            recursiveBlock("Yep", "CatchChat", "1")
-            
-            print("11")
+
             
 //            // TODO: How to more elegantly deal with recursive call. 
 //            client.repos.getRepoFrom(owner: "onevcat").response({ (nextPage, result, error) -> Void in
