@@ -12,110 +12,171 @@ import GithubPilot
 
 public class FollowersViewController: UIViewController {
     
+    var myTestResult:[GithubUser] = []
+    
     public override func viewDidAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"receivedGithubAccessToken", name: "TestName", object: nil)
         print("View Did Appear")
         if let client = Github.authorizedClient {
             print("Exist Client")
             
-            client.users.getUser(username: "onevcat").response({ (githubUser, error) -> Void in
-                if let user = githubUser {
-                    print(user.description)
-                } else {
-                    print(error?.description)
-                }
-            })
+//            client.users.getUser(username: "onevcat").response({ (githubUser, error) -> Void in
+//                if let user = githubUser {
+//                    print(user.description)
+//                } else {
+//                    print(error?.description)
+//                }
+//            })
+//            
+//            client.users.getAuthenticatedUser().response({ user, requestError in
+//                if let me = user {
+//                    print(me.description)
+//                } else {
+//                    print(requestError?.description)
+//                }
+//            })
+//            
+//            client.users.getAllUsers("1209").response({ (httpResponse, users, requestError) -> Void in
+//                if let response = httpResponse {
+//                    print("Since   :\(response)")
+//                }
+//                if let result = users {
+//                    for user in result {
+//                        print(user.description)
+//                    }
+//                } else {
+//                    print(requestError?.description)
+//                }
+//            })
+//            
+//            client.repos.getAuthenticatedUserRepos().response({ (result, error) -> Void in
+//                if let repos = result {
+//                    print(repos.count)
+//                    for i in repos {
+//                        print(i.name)
+//                        print(i.stargazersCount)
+//                    }
+//                }
+//                
+//                if let requestError = error {
+//                    print(requestError.description)
+//                }
+//            })
             
-            client.users.getAuthenticatedUser().response({ user, requestError in
-                if let me = user {
-                    print(me.description)
-                } else {
-                    print(requestError?.description)
-                }
-            })
+//            client.repos.getRepo("Yep", owner: "CatchChat").response({ (result, error) -> Void in
+//                if let repo = result {
+//                    print(repo.name)
+//                    print(repo.stargazersURL!)
+//                }
+//                
+//                if let requestError = error {
+//                    print(requestError.description)
+//                }
+//            })
             
-            client.users.getAllUsers("1209").response({ (httpResponse, users, requestError) -> Void in
-                if let response = httpResponse {
-                    print("Since   :\(response)")
-                }
-                if let result = users {
-                    for user in result {
-                        print(user.description)
-                    }
-                } else {
-                    print(requestError?.description)
-                }
-            })
-            
-            client.repos.getAuthenticatedUserRepos().response({ (result, error) -> Void in
-                if let repos = result {
-                    print(repos.count)
-                    for i in repos {
-                        print(i.name)
-                        print(i.stargazersCount)
-                    }
+            client.stars.getStargazersFor(repo: "Yep", owner: "CatchChat", page: "1").response({ (nextPage, result, error) -> Void in
+                if let users = result {
+//                    for i in users {
+//                        print(i)
+//                    }
+                    print(users.count)
                 }
                 
-                if let requestError = error {
-                    print(requestError.description)
-                }
-            })
-            
-            client.repos.getRepo("Yep", owner: "CatchChat").response({ (result, error) -> Void in
-                if let repo = result {
-                    print(repo.name)
-                }
-                
-                if let requestError = error {
-                    print(requestError.description)
-                }
-            })
-            
-            // TODO: How to more elegantly deal with recursive call. 
-            client.repos.getRepoFrom(owner: "onevcat").response({ (nextPage, result, error) -> Void in
                 if let page = nextPage {
-                    print("Next !!!! Page !!! is \(page)")
-                    client.repos.getRepoFrom(owner: "onevcat", page: page).response({ (page, result, error) -> Void in
-                        if let nextPage = page {
-                            print("Next Next !!!! Page !!! is \(nextPage)")
-                        }
-                        
-                        if let repos = result {
-                            print(repos.count)
-                            for i in repos {
-                                print(i.name)
-                                print(i.stargazersCount)
-                            }
-                        }
-                    })
-                }
-                
-                if let repos = result {
-                    print(repos.count)
-                    for i in repos {
-                        print(i.name)
-                        print(i.stargazersCount)
-                    }
-                }
-                
-                if let requestError = error {
-                    print(requestError.description)
+                    print("Next page is:\(page)")
                 }
             })
             
-            client.events.getReceivedEventsForUser("jindulys").response({ (nextPage, result, error) -> Void in
-                if let page = nextPage {
-                    print("next page\(page)")
-                }
-                
-                if let events = result {
-                    print(events.count)
-                    for i in events {
-                        print(i.actor)
-                        print(i.repo)
+            var aggregatedresult:[GithubUser] = []
+            var recursiveBlock: (String, String, String) -> () = {(_, _, _) in }
+            recursiveBlock = { repo, owner, page in
+                client.stars.getStargazersFor(repo: repo, owner: owner, page: page).response({(nextPage, result, error) -> Void in
+                    if let users = result {
+                        print(users.count)
+                        self.myTestResult.appendContentsOf(users)
                     }
-                }
+                    
+                    if let vpage = nextPage {
+                        print("Next page is:\(vpage)")
+                        if vpage == "1" {
+                            print("Here")
+                            NSNotificationCenter.defaultCenter().postNotificationName("TestName", object: nil)
+                        } else {
+                            recursiveBlock(repo, owner, vpage)
+                        }
+                    }
+                })
+                
+            }
 
-            })
+            recursiveBlock("Yep", "CatchChat", "1")
+            
+            print("11")
+            
+//            // TODO: How to more elegantly deal with recursive call. 
+//            client.repos.getRepoFrom(owner: "onevcat").response({ (nextPage, result, error) -> Void in
+//                if let page = nextPage {
+//                    print("Next !!!! Page !!! is \(page)")
+//                    client.repos.getRepoFrom(owner: "onevcat", page: page).response({ (page, result, error) -> Void in
+//                        if let nextPage = page {
+//                            print("Next Next !!!! Page !!! is \(nextPage)")
+//                        }
+//                        
+//                        if let repos = result {
+//                            print(repos.count)
+//                            for i in repos {
+//                                print(i.name)
+//                                print(i.stargazersCount)
+//                            }
+//                        }
+//                    })
+//                }
+//                
+//                if let repos = result {
+//                    print(repos.count)
+//                    for i in repos {
+//                        print(i.name)
+//                        print(i.stargazersCount)
+//                    }
+//                }
+//                
+//                if let requestError = error {
+//                    print(requestError.description)
+//                }
+//            })
+//            
+//            client.events.getReceivedEventsForUser("jindulys").response({ (nextPage, result, error) -> Void in
+//                if let page = nextPage {
+//                    print("next page\(page)")
+//                }
+//                
+//                if let events = result {
+//                    print(events.count)
+//                    for i in events {
+//                        print(i.actor)
+//                        print(i.repo)
+//                    }
+//                }
+//
+//            })
         }
     }
+    
+    func receivedGithubAccessToken() {
+        print(myTestResult.count)
+        
+        let blogs = myTestResult.filter { (user) -> Bool in
+            return user.blog != nil
+        }
+        print(blogs.count)
+        
+        
+    }
+    
+    public override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
 }
+
+

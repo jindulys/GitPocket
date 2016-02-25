@@ -36,6 +36,8 @@ public class InitialViewController: UIViewController {
         // New way to request
         Github.setupClientID("bf39a01edfbf0035cb42", clientSecret: "fd9c0462e830bc6936a217975b024e703d32adc0", scope: ["user", "repo"], redirectURI: "gitpocket://admin")
         Github.authenticate()
+        
+        print(Manager.sharedInstance.cache.savePath)
     }
     
     override public func viewDidAppear(animated: Bool) {

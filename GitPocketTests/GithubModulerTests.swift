@@ -21,17 +21,5 @@ class GithubModulerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testObjectToJSON() {
-        let testString = objectToJSON("string")
-        XCTAssertTrue(testString == JSON.Str("string"))
-        
-        let jsonArray = objectToJSON(["1", NSNumber(int: 10)])
-        XCTAssertTrue(jsonArray == JSON.Array([.Str("1"), .Number(NSNumber(int: 10))]))
-        
-        let jsonDic = objectToJSON(["1": "String", "2": NSNumber(float: 66.6)])
-        XCTAssertTrue(jsonDic == JSON.Dictionary(["1":.Str("String"), "2": .Number(NSNumber(float: 66.6))]))
-    }
-
 }
 

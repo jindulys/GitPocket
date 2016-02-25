@@ -270,6 +270,10 @@ protocol ImageCache: NSObjectProtocol {
         get
         set
     }
+    
+    var savePath: String {
+        get 
+    }
 }
 
 enum State {

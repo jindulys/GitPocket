@@ -21,6 +21,7 @@ class GithubFeedCell: UITableViewCell
     
     var actorNameTagStackView: UIStackView = UIStackView()
     var actorTag: TagButton = TagButton(title: "UNKNOWN")
+    var storedEvent: GithubEvent?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,6 +52,8 @@ class GithubFeedCell: UITableViewCell
         
         // repo name
         self.clientLabel.text = event.repo?.name
+        
+        self.storedEvent = event
     }
     
     
@@ -60,6 +63,10 @@ class GithubFeedCell: UITableViewCell
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         avatarView.contentMode = .ScaleAspectFill
         self.contentView.addSubview(avatarView)
+        
+        let tapAvatar = UITapGestureRecognizer(target: self, action: Selector("avatarTapped:"))
+        avatarView.userInteractionEnabled = true
+        avatarView.addGestureRecognizer(tapAvatar)
         
         // A common block could be called if multible labels have samiliar configuration.
         let setupLabel: (UILabel, Int, NSLineBreakMode)-> Void = { (label: UILabel, numOfLines: Int, lineBreakMode: NSLineBreakMode)  in
@@ -181,6 +188,10 @@ class GithubFeedCell: UITableViewCell
         //    print("actorTag Origin x:(\(actorTag.frame.origin.x)) y:(\(actorTag.frame.origin.y)) Size width:(\(actorTag.frame.size.width)) height:(\(actorTag.frame.size.height))\n")
         //    
         //    print("--------*****************--------------")
+    }
+    
+    func avatarTapped(img: AnyObject) {
+        print(self.storedEvent?.actor)
     }
 }
 

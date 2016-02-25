@@ -106,4 +106,8 @@ extension DiskCached: ImageCache {
             }
         }
     }
+    
+    var savePath: String {
+        return self.directory.path
+    }
 }
