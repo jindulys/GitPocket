@@ -78,16 +78,30 @@ public class FollowersViewController: UIViewController {
             
             client.stars.getStargazersFor(repo: "Yep", owner: "CatchChat", page: "1").response({ (nextPage, result, error) -> Void in
                 if let users = result {
-//                    for i in users {
-//                        print(i)
-//                    }
                     print(users.count)
                 }
                 
                 if let page = nextPage {
                     print("Next page is:\(page)")
+                    client.stars.getStargazersFor(repo: "Yep", owner: "CatchChat", page: page).response({ (nextPage, result, error) -> Void in
+                        if let users = result {
+                            print(users.count)
+                        }
+                        
+                        if let page = nextPage {
+                            print("Next page is:\(page)")
+                            client.stars.getStargazersFor(repo: "Yep", owner: "CatchChat", page: page).response({ (nextPage, result, error) -> Void in
+                                /*
+                                    .
+                                    .
+                                    .
+                                */
+                            })
+                        }
+                    })
                 }
             })
+            
             
             // Notification Implementation
 //            var aggregatedresult:[GithubUser] = []
@@ -102,7 +116,7 @@ public class FollowersViewController: UIViewController {
 //                    if let vpage = nextPage {
 //                        print("Next page is:\(vpage)")
 //                        if vpage == "1" {
-//                            print("Here")
+//                            print("Finished")
 //                            NSNotificationCenter.defaultCenter().postNotificationName("TestName", object: nil)
 //                        } else {
 //                            recursiveBlock(repo, owner, vpage)
@@ -150,19 +164,49 @@ public class FollowersViewController: UIViewController {
             // Yup, Success, 
             // 1. get all the results, then return back
             // 2. change to main thread!
-            client.stars.getAllStargazersFor(repo: "Yep", owner: "CatchChatlll"){
-                result, error in
-                
+//            client.stars.getAllStargazersFor(repo: "Yep", owner: "CatchChat"){
+//                result, error in
+//                
+//                if let users = result {
+//                    print(users.count)
+//                }
+//                
+//                if let error = error {
+//                    print(error)
+//                }
+//            }
+
+
+            client.stars.getAllStargazersFor(repo: "HackerRankSolutions", owner: "jindulys", complitionHandler: { (result, error) -> Void in
                 if let users = result {
                     print(users.count)
+                    
+                    // test get blog
+                    var usersBlog = [String]()
+                    
+                    for user in users {
+                        client.users.getAPIUser(url:user.url).response({ (result, error) -> Void in
+                            if let fullUser = result, blog = fullUser.blog {
+                                usersBlog.append(blog)
+                            }
+                        })
+                    }
                 }
                 
                 if let error = error {
                     print(error)
                 }
-            }
-
-
+            })
+            
+            client.users.getUser(username: "jindulys").response({ (user, error) -> Void in
+                if let responseError = error {
+                    print(responseError.description)
+                }
+                
+                if let lys = user {
+                    print(lys)
+                }
+            })
             
 //            // TODO: How to more elegantly deal with recursive call. 
 //            client.repos.getRepoFrom(owner: "onevcat").response({ (nextPage, result, error) -> Void in
