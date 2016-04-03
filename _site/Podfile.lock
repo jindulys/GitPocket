@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (3.2.0)
+  - GithubPilot (0.0.1):
+    - Alamofire (~> 3.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - GithubPilot (from `~/Desktop/GithubPilot`)
+
+EXTERNAL SOURCES:
+  GithubPilot:
+    :path: "~/Desktop/GithubPilot"
+
+SPEC CHECKSUMS:
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  GithubPilot: e2796838c2c145b1a8369e1b3c8af8a53b99b8ef
+
+COCOAPODS: 0.39.0
