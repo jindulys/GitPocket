@@ -25,13 +25,11 @@ class GithubFeedCell: UITableViewCell
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         setupViews()
     }
     
@@ -62,9 +60,11 @@ class GithubFeedCell: UITableViewCell
     func setupViews() {
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         avatarView.contentMode = .ScaleAspectFill
+        avatarView.layer.cornerRadius = 10.0
+        avatarView.clipsToBounds = true
         self.contentView.addSubview(avatarView)
         
-        let tapAvatar = UITapGestureRecognizer(target: self, action: Selector("avatarTapped:"))
+        let tapAvatar = UITapGestureRecognizer(target: self, action: #selector(GithubFeedCell.avatarTapped(_:)))
         avatarView.userInteractionEnabled = true
         avatarView.addGestureRecognizer(tapAvatar)
         

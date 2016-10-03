@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RFB-V8-jTl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RFB-V8-jTl">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Followers View Controller-->
@@ -55,6 +55,7 @@
                     <connections>
                         <segue destination="sdQ-5I-VjI" kind="relationship" relationship="viewControllers" id="Rxe-Rz-1V3"/>
                         <segue destination="Lvl-yr-u0I" kind="relationship" relationship="viewControllers" id="KxR-2g-8pg"/>
+                        <segue destination="xl7-3j-lLb" kind="relationship" relationship="viewControllers" id="muq-dK-ZKi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VC6-Cm-tm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,6 +99,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RyF-IB-rdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="101" y="653"/>
+        </scene>
+        <!--Search Repo View Controller-->
+        <scene sceneID="5Yq-WJ-bjX">
+            <objects>
+                <viewController id="Wf4-nD-a44" customClass="SearchRepoViewController" customModule="GitPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pco-Rk-fh4"/>
+                        <viewControllerLayoutGuide type="bottom" id="OiU-8x-MHa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tbe-zM-VHY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3ht-4o-EaX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVw-ha-x8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913" y="1400"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="EMB-RV-8pO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xl7-3j-lLb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" id="Rjo-rw-F70"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BcT-y5-Ms5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Wf4-nD-a44" kind="relationship" relationship="rootViewController" id="Ll5-xQ-Je4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71B-qy-9lu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="101" y="1408"/>
         </scene>
     </scenes>
 </document>

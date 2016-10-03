@@ -22,12 +22,12 @@ public class InitialViewController: UIViewController {
         self.navigationItem.title = "Recently Happened"
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : AnyObject]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#2d8ed7")
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         // Add observer
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadView", name: Constants.NotificationKey.GithubAccessTokenRequestSuccess, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(InitialViewController.reloadView), name: Constants.NotificationKey.GithubAccessTokenRequestSuccess, object: nil)
         
         // Setup subviews
         

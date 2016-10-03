@@ -32,6 +32,7 @@
 		0EC7AF521B63E13E00EB9F6E /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */; };
 		0EC7AF551B63E17300EB9F6E /* DiskCached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF531B63E17300EB9F6E /* DiskCached.swift */; };
 		0EC7AF561B63E17300EB9F6E /* PocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */; };
+		0EE898BD1CC2CF1C0061926B /* SearchRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE898BC1CC2CF1C0061926B /* SearchRepoViewController.swift */; };
 		24C9A595CE4616904A91A2F5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ECE499EAF020D2624FC491 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		0EC7AF511B63E13E00EB9F6E /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+ImageLoader.swift"; path = "Extensions/UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		0EC7AF531B63E17300EB9F6E /* DiskCached.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskCached.swift; path = Utilities/DiskCached.swift; sourceTree = "<group>"; };
 		0EC7AF541B63E17300EB9F6E /* PocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketHelper.swift; path = Utilities/PocketHelper.swift; sourceTree = "<group>"; };
+		0EE898BC1CC2CF1C0061926B /* SearchRepoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRepoViewController.swift; sourceTree = "<group>"; };
 		26ECE499EAF020D2624FC491 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E4A0ABD5E65413D2C7C035 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6A1E213756E684A9162881FD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		0E83BABD1B484654007C3EB4 /* GitPocket */ = {
 			isa = PBXGroup;
 			children = (
+				0EE898B91CC2CED20061926B /* SearchRepo */,
 				0ED1BA891B61DC9500245A90 /* Utilities */,
 				0E6249871C726F4F00629372 /* Followers */,
 				0EC7AF591B64900400EB9F6E /* OldAPIViewControllers */,
@@ -249,6 +252,14 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		0EE898B91CC2CED20061926B /* SearchRepo */ = {
+			isa = PBXGroup;
+			children = (
+				0EE898BC1CC2CF1C0061926B /* SearchRepoViewController.swift */,
+			);
+			path = SearchRepo;
+			sourceTree = "<group>";
+		};
 		124519A881473EFB206B4CD6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +290,7 @@
 				0E83BAB91B484654007C3EB4 /* Resources */,
 				A89BC4134A023226454194A1 /* Embed Pods Frameworks */,
 				5B04EEF250E74DA12337366A /* Copy Pods Resources */,
+				0E55FE491CC88F2F005DE6E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -395,6 +407,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0E55FE491CC88F2F005DE6E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 		5B04EEF250E74DA12337366A /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,6 +486,7 @@
 				0E62498D1C7272A600629372 /* WebViewController.swift in Sources */,
 				0E62499A1C72735A00629372 /* Repo.swift in Sources */,
 				0E83BABF1B484654007C3EB4 /* AppDelegate.swift in Sources */,
+				0EE898BD1CC2CF1C0061926B /* SearchRepoViewController.swift in Sources */,
 				0E62499F1C72738C00629372 /* PullToRefresh.swift in Sources */,
 				0E29C2E21C7A9FA900B1F306 /* SwiftHEXColors.swift in Sources */,
 				0E6249981C72735A00629372 /* Event.swift in Sources */,

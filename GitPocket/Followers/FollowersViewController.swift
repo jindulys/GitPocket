@@ -15,7 +15,7 @@ public class FollowersViewController: UIViewController {
     var myTestResult:[GithubUser] = []
     
     public override func viewDidAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"receivedGithubAccessToken", name: "TestName", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(FollowersViewController.receivedGithubAccessToken), name: "TestName", object: nil)
         print("View Did Appear")
         if let client = Github.authorizedClient {
             print("Exist Client")
