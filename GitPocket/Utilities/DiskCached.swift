@@ -13,20 +13,20 @@ extension String {
     func escape() -> String {
         let str = CFURLCreateStringByAddingPercentEscapes(
             kCFAllocatorDefault,
-            self,
+            self as CFString!,
             nil,
-            "!*'\"();:@&=+$,/?%#[]% ",
-            CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)
+            "!*'\"();:@&=+$,/?%#[]% " as CFString!,
+            CFStringConvertNSStringEncodingToEncoding(String.Encoding.utf8.rawValue)
         )
         
-        return str as String
+        return str as! String
     }
 }
 
 
 
 class DiskCached: NSObject {
-    var images = [NSURL: UIImage]()
+    var images = [URL: UIImage]()
     
     class Directory {
         init() {
@@ -34,12 +34,12 @@ class DiskCached: NSObject {
         }
         
         func createDirectory() {
-            let fileManager = NSFileManager.defaultManager()
-            if fileManager.fileExistsAtPath(path) {
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: path) {
                 return
             }
             do {
-                try fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 print("create file failed")
             }
@@ -47,8 +47,8 @@ class DiskCached: NSObject {
         }
         
         var path:String {
-            let cacheDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory,
-                .UserDomainMask, true)[0] as String
+            let cacheDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory,
+                .userDomainMask, true)[0] as String
             let directoryName = "GitPocket.diskcached"
             
             return cacheDirectory.stringByAppendingPathComponent(directoryName)
@@ -56,54 +56,54 @@ class DiskCached: NSObject {
     }
     
     let directory = Directory()
-    let _set_queue = dispatch_queue_create("GitPocket.queues.diskcached.set", DISPATCH_QUEUE_SERIAL)
-    let _subscript_queue = dispatch_queue_create("GitPocket.queues.diskcached.subscript", DISPATCH_QUEUE_CONCURRENT)
+    let _set_queue = DispatchQueue(label: "GitPocket.queues.diskcached.set", attributes: [])
+    let _subscript_queue = DispatchQueue(label: "GitPocket.queues.diskcached.subscript", attributes: DispatchQueue.Attributes.concurrent)
 }
 
 extension DiskCached {
-    func objectForKey(aKey: NSURL) -> UIImage? {
+    func objectForKey(_ aKey: URL) -> UIImage? {
         if let image = images[aKey] {
             return image
         }
         
-        if let data = NSData(contentsOfFile: savePath(aKey.absoluteString)) {
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: savePath(aKey.absoluteString))) {
             return UIImage(data: data)
         }
         return nil
     }
     
-    func savePath(name: String) -> String {
+    func savePath(_ name: String) -> String {
         return directory.path.stringByAppendingPathComponent(name.escape())
     }
     
-    func setObject(anImage: UIImage, forkey aKey: NSURL) {
+    func setObject(_ anImage: UIImage, forkey aKey: URL) {
         images[aKey] = anImage
         
         let block: ()->() = {
             if let data = UIImageJPEGRepresentation(anImage, 1.0) {
-                data.writeToFile(self.savePath(aKey.absoluteString), atomically: false)
+                try? data.write(to: URL(fileURLWithPath: self.savePath(aKey.absoluteString)), options: [])
             }
             
             self.images[aKey] = nil
         }
         
-        dispatch_async(_set_queue, block)
+        _set_queue.async(execute: block)
     }
 }
 
 extension DiskCached: ImageCache {
-    subscript(aKey: NSURL) -> UIImage? {
+    subscript(aKey: URL) -> UIImage? {
         get {
             var value: UIImage?
-            dispatch_sync(_subscript_queue) {
+            _subscript_queue.sync {
                 value = self.objectForKey(aKey)
             }
             return value
         }
         set {
-            dispatch_barrier_async(_subscript_queue) {
+            _subscript_queue.async(flags: .barrier, execute: {
                 self.setObject(newValue!, forkey: aKey)
-            }
+            }) 
         }
     }
     

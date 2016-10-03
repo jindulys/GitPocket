@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import GithubPilot
 
-public class FollowersViewController: UIViewController {
+open class FollowersViewController: UIViewController {
     
     var myTestResult:[GithubUser] = []
     
-    public override func viewDidAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(FollowersViewController.receivedGithubAccessToken), name: "TestName", object: nil)
+    open override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector:#selector(FollowersViewController.receivedGithubAccessToken), name: NSNotification.Name(rawValue: "TestName"), object: nil)
         print("View Did Appear")
         if let client = Github.authorizedClient {
             print("Exist Client")
@@ -257,8 +257,8 @@ public class FollowersViewController: UIViewController {
         
     }
     
-    public override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    open override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

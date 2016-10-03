@@ -104,28 +104,28 @@ class Event {
     
     init(eventInfo: NSDictionary) {
         
-        if let typeName = eventInfo.valueForKey("type") as? String {
+        if let typeName = eventInfo.value(forKey: "type") as? String {
             self.type = EventType(event: typeName)
         }
         
-        if let actor = eventInfo.valueForKey("actor") as? NSDictionary {
+        if let actor = eventInfo.value(forKey: "actor") as? NSDictionary {
             self.actor = User(profileInfo: actor)
         }
         
-        if let repo = eventInfo.valueForKey("repo") as? NSDictionary {
+        if let repo = eventInfo.value(forKey: "repo") as? NSDictionary {
             self.repo = Repo(repoInfo: repo)
         }
         
-        if let eventID = eventInfo.valueForKey("id") as? String {
+        if let eventID = eventInfo.value(forKey: "id") as? String {
             self.eventID = eventID
         }
         
     }
     
     // class function to get a list of event
-    class func parseJSONDataIntoEvents(data: NSData) -> [Event]? {
+    class func parseJSONDataIntoEvents(_ data: Data) -> [Event]? {
         do {
-            if let events = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSArray {
+            if let events = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray {
                 
                 var finalEvent = [Event]()
                 for event in events {

@@ -15,14 +15,14 @@ class User {
     
     
     init(profileInfo:NSDictionary) {
-        self.userName = profileInfo.valueForKey("login") as? String
-        self.avatarURL = profileInfo.valueForKey("avatar_url") as? String
+        self.userName = profileInfo.value(forKey: "login") as? String
+        self.avatarURL = profileInfo.value(forKey: "avatar_url") as? String
     }
     
     // class function to get a single user
-    class func parseJSONDataIntoSingleUser(data: NSData) -> User? {
+    class func parseJSONDataIntoSingleUser(_ data: Data) -> User? {
         do {
-            if let userDict = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.AllowFragments) as? NSDictionary {
+            if let userDict = try JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary {
                 let newUser = User(profileInfo: userDict)
                 return newUser
             }
@@ -33,9 +33,9 @@ class User {
     }
     
     // class function to get a list of users
-    class func parseJSONDataIntoUsers(data: NSData) -> [User]?{
+    class func parseJSONDataIntoUsers(_ data: Data) -> [User]?{
         do {
-            if let jsonDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
+            if let jsonDict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
                 var users = [User]()
                 
                 if let results = jsonDict["items"] as? NSArray {

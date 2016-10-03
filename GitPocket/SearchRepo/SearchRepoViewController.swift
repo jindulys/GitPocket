@@ -17,7 +17,7 @@ class SearchRepoViewController: UIViewController {
     var searchButton: UIButton?
     var searchList: UITableView?
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -27,10 +27,10 @@ class SearchRepoViewController: UIViewController {
     
     override func viewDidLoad() {
         self.navigationItem.title = "Search Repo"
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#2d8ed7")
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         self.setUpViews()
         if #available(iOS 9.0, *) {
@@ -41,7 +41,7 @@ class SearchRepoViewController: UIViewController {
     }
     
     func setUpViews() -> Void {
-        self.searchTitleField = UITextField(frame: CGRectZero)
+        self.searchTitleField = UITextField(frame: CGRect.zero)
         self.searchTitleField?.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.searchTitleField!)
     }
@@ -49,11 +49,11 @@ class SearchRepoViewController: UIViewController {
     @available(iOS 9.0, *)
     func buildConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = [];
-        constraints.append((self.searchTitleField?.leadingAnchor.constraintEqualToAnchor(self.view.leadingAnchor))!)
-        constraints.append((self.searchTitleField?.topAnchor.constraintEqualToAnchor(self.topLayoutGuide.bottomAnchor))!)
-        constraints.append((self.searchTitleField?.trailingAnchor.constraintEqualToAnchor(self.view.trailingAnchor))!)
-        constraints.append((self.searchTitleField?.heightAnchor.constraintEqualToConstant(40))!)
-        NSLayoutConstraint.activateConstraints(constraints)
+        constraints.append((self.searchTitleField?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor))!)
+        constraints.append((self.searchTitleField?.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor))!)
+        constraints.append((self.searchTitleField?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor))!)
+        constraints.append((self.searchTitleField?.heightAnchor.constraint(equalToConstant: 40))!)
+        NSLayoutConstraint.activate(constraints)
         return constraints
     }
 }

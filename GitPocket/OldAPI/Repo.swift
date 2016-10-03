@@ -16,17 +16,17 @@ class Repo {
     var homeURL: String?
     
     init(repoInfo:NSDictionary) {
-        self.name = repoInfo.valueForKey("name") as? String
+        self.name = repoInfo.value(forKey: "name") as? String
         
-        if let userDict = repoInfo.valueForKey("owner") as? NSDictionary {
+        if let userDict = repoInfo.value(forKey: "owner") as? NSDictionary {
             self.owner = User(profileInfo: userDict)
         }
         
-        self.language = repoInfo.valueForKey("language") as? String
-        self.url = repoInfo.valueForKey("url") as? String
+        self.language = repoInfo.value(forKey: "language") as? String
+        self.url = repoInfo.value(forKey: "url") as? String
     }
     
-    func getRepoFullInfoWithCompletionHander(completionHandler:(()->Void)? = nil) {
+    func getRepoFullInfoWithCompletionHander(_ completionHandler:(()->Void)? = nil) {
         
         if let repoURL = self.url {
             NetEngine.SharedInstance.requestTokenURL(repoURL, completionHandler: { (dict, error) -> Void in
@@ -35,7 +35,7 @@ class Repo {
                 }
                 
                 if let infoDict = dict {
-                    self.homeURL = infoDict.valueForKey("html_url") as? String
+                    self.homeURL = infoDict.value(forKey: "html_url") as? String
                     if let ch = completionHandler {
                         ch()
                     }

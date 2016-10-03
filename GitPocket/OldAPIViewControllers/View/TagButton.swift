@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class TagButton: UIButton {
-    var textFont: UIFont = UIFont.systemFontOfSize(16) {
+    var textFont: UIFont = UIFont.systemFont(ofSize: 16) {
         didSet {
             titleLabel?.font = textFont
         }
@@ -31,7 +31,7 @@ class TagButton: UIButton {
     
     var borderColor: UIColor? {
         didSet {
-            layer.borderColor = borderColor?.CGColor
+            layer.borderColor = borderColor?.cgColor
         }
     }
     
@@ -49,9 +49,9 @@ class TagButton: UIButton {
         }
     }
     
-    var textColor: UIColor = UIColor.blackColor() {
+    var textColor: UIColor = UIColor.black {
         didSet {
-            setTitleColor(textColor, forState: UIControlState.Normal)
+            setTitleColor(textColor, for: UIControlState())
         }
     }
     
@@ -61,21 +61,21 @@ class TagButton: UIButton {
     }
     
     init(title: String) {
-        super.init(frame: CGRectZero)
-        setTitle(title, forState: UIControlState.Normal)
+        super.init(frame: CGRect.zero)
+        setTitle(title, for: UIControlState())
         titleLabel?.font = textFont
-        setTitleColor(textColor, forState:.Normal)
-        titleLabel?.backgroundColor = UIColor.clearColor()
+        setTitleColor(textColor, for:UIControlState())
+        titleLabel?.backgroundColor = UIColor.clear
         
         setupView()
     }
     
     func setupView() {
-        frame.size = intrinsicContentSize()
+        frame.size = intrinsicContentSize
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        var size = titleLabel?.text?.sizeWithAttributes([NSFontAttributeName: textFont]) ?? CGSizeZero
+    override var intrinsicContentSize : CGSize {
+        var size = titleLabel?.text?.size(attributes: [NSFontAttributeName: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY*2
         size.width += paddingX*2
         return size;

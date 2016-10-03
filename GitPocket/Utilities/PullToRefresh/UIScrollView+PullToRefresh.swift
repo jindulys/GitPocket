@@ -21,7 +21,7 @@ extension UIScrollView {
         }
     }
     
-    func addPullToRefresh(pullToRefresh: PullToRefresh, action:()->()) {
+    func addPullToRefresh(_ pullToRefresh: PullToRefresh, action:@escaping ()->()) {
         if self.pullToRefresh != nil {
             self.removePullToRefresh(self.pullToRefresh!)
         }
@@ -31,12 +31,12 @@ extension UIScrollView {
         pullToRefresh.action = action
         
         let view = pullToRefresh.refreshView
-        view.frame = CGRectMake(0, -view.frame.size.height, self.frame.size.width, view.frame.size.height)
+        view.frame = CGRect(x: 0, y: -view.frame.size.height, width: self.frame.size.width, height: view.frame.size.height)
         self.addSubview(view)
-        self.sendSubviewToBack(view)
+        self.sendSubview(toBack: view)
     }
     
-    func removePullToRefresh(pullToRefresh: PullToRefresh) {
+    func removePullToRefresh(_ pullToRefresh: PullToRefresh) {
         self.pullToRefresh?.refreshView.removeFromSuperview()
         self.pullToRefresh = nil
     }

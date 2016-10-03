@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-public class WebViewController: UIViewController {
-    public let webView: UIWebView = UIWebView()
-    public var webURL: URLLiteralConvertible?
+open class WebViewController: UIViewController {
+    open let webView: UIWebView = UIWebView()
+    open var webURL: URLLiteralConvertible?
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        let urlRequest = NSURLRequest(URL: (webURL?.URL)!)
+        let urlRequest = URLRequest(url: (webURL?.URL)! as URL)
         webView.loadRequest(urlRequest)
     }
     
@@ -26,14 +26,14 @@ public class WebViewController: UIViewController {
         
         if #available(iOS 9.0, *) {
             // webView constraints
-            let webViewLeadingConstraint = webView.leadingAnchor.constraintEqualToAnchor(self.view.leadingAnchor)
+            let webViewLeadingConstraint = webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
             
-            let webViewTrailingConstraint = webView.trailingAnchor.constraintEqualToAnchor(self.view.trailingAnchor)
+            let webViewTrailingConstraint = webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
             
-            let webViewTopConstraint = webView.topAnchor.constraintEqualToAnchor(self.view.topAnchor)
+            let webViewTopConstraint = webView.topAnchor.constraint(equalTo: self.view.topAnchor)
             
-            let webViewBottomConstraint = webView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor)
-            NSLayoutConstraint.activateConstraints([webViewLeadingConstraint, webViewTopConstraint, webViewBottomConstraint, webViewTrailingConstraint])
+            let webViewBottomConstraint = webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            NSLayoutConstraint.activate([webViewLeadingConstraint, webViewTopConstraint, webViewBottomConstraint, webViewTrailingConstraint])
         }
         
     }

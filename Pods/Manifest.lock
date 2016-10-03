@@ -1,18 +1,16 @@
 PODS:
-  - Alamofire (3.2.0)
-  - GithubPilot (0.0.1):
-    - Alamofire (~> 3.0)
+  - Alamofire (4.0.1)
+  - GithubPilot (1.1.6):
+    - Alamofire (~> 4.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.0)
-  - GithubPilot (from `~/Desktop/GithubPilot`)
-
-EXTERNAL SOURCES:
-  GithubPilot:
-    :path: "~/Desktop/GithubPilot"
+  - Alamofire (~> 4.0)
+  - GithubPilot (~> 1.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  GithubPilot: e2796838c2c145b1a8369e1b3c8af8a53b99b8ef
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  GithubPilot: ee90efb4f96e21a2860218a5b5535a8d288313ce
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 5e215c59a2e9a5bc241a5f83a660be56a0357e27
+
+COCOAPODS: 1.1.0.rc.2
