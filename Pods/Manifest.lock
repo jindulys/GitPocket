@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
-  - GithubPilot (1.1.6):
+  - GithubPilot (1.1.8):
     - Alamofire (~> 4.0.0)
 
 DEPENDENCIES:
@@ -9,7 +9,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  GithubPilot: ee90efb4f96e21a2860218a5b5535a8d288313ce
+  GithubPilot: 1166d22c17021abc91b2921e73d469a5af800859
 
 PODFILE CHECKSUM: 5e215c59a2e9a5bc241a5f83a660be56a0357e27
 
