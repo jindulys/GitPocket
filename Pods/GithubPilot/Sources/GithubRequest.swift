@@ -34,6 +34,39 @@ open class Box<T> {
 	}
 }
 
+internal struct GPHttpResponseHandler {
+	static var PageHandler: (HTTPURLResponse?) -> String? {
+		return generateSingleSearchHandler(searchText: "page=")
+	}
+	
+	static var SinceHandler: (HTTPURLResponse?) -> String? {
+		return generateSingleSearchHandler(searchText: "since=")
+	}
+	
+	static func generateSingleSearchHandler(searchText: String) -> (HTTPURLResponse?) -> String? {
+		return { (response: HTTPURLResponse?) in
+			if let nonNilResponse = response,
+				let link = (nonNilResponse.allHeaderFields["Link"] as? String),
+				let sinceRange = link.range(of: searchText) {
+				var retVal = ""
+				var checkIndex = sinceRange.upperBound
+				while checkIndex != link.endIndex {
+					let character = link.characters[checkIndex]
+					let characterInt = character.zeroCharacterBasedunicodeScalarCodePoint()
+					if characterInt>=0 && characterInt<=9 {
+						retVal += String(character)
+					} else {
+						break
+					}
+					checkIndex = link.index(after: checkIndex)
+				}
+				return retVal
+			}
+			return nil
+		}
+	}
+}
+
 /// A Custom ParameterEncoding Structure encoding JSON Params.
 internal struct JSONPostEncoding: ParameterEncoding {
 	let postJSONParams: JSON
@@ -317,7 +350,9 @@ open class RpcCustomResponseRequest<RType: JSONSerializer, EType: JSONSerializer
 	     postData: Data? = nil,
 	     encoding: ParameterEncoding = URLEncoding.default,
 	     customResponseHandler: ((HTTPURLResponse?)->T?)? = nil,
-	     defaultResponseQueue: DispatchQueue? = nil, responseSerializer: RType, errorSerializer: EType) {
+	     defaultResponseQueue: DispatchQueue? = nil,
+	     responseSerializer: RType,
+	     errorSerializer: EType) {
 		httpResponseHandler = customResponseHandler
 		self.defaultResponseQueue = defaultResponseQueue
 		super.init(client: client,

@@ -28,34 +28,24 @@ open class StarsRoutes {
 	
 	- returns: an RpcRequest, whose response result contains `[GithubUser]`, if pagination is applicable, response result contains `nextpage`.
 	*/
-	open func getStargazersFor(repo: String, owner: String, page: String = "1", defaultResponseQueue: DispatchQueue? = nil) -> RpcCustomResponseRequest<UserArraySerializer, StringSerializer, String> {
+	open func getStargazersFor(repo: String,
+	                           owner: String,
+	                           page: String = "1",
+	                           defaultResponseQueue: DispatchQueue? = nil) -> RpcCustomResponseRequest<UserArraySerializer, StringSerializer, String> {
 		if repo.characters.count == 0 || owner.characters.count == 0 {
 			print("Repo name and Owner name must not be empty")
 		}
-		
-		let httpResponseHandler:((HTTPURLResponse?)->String?)? = { (response: HTTPURLResponse?) in
-			if let nonNilResponse = response,
-				let link = (nonNilResponse.allHeaderFields["Link"] as? String),
-				let sinceRange = link.range(of: "page=") {
-				var retVal = ""
-				var checkIndex = sinceRange.upperBound
-				
-				while checkIndex != link.endIndex {
-					let character = link.characters[checkIndex]
-					let characterInt = character.zeroCharacterBasedunicodeScalarCodePoint()
-					if characterInt>=0 && characterInt<=9 {
-						retVal += String(character)
-					} else {
-						break
-					}
-					checkIndex = link.index(after: checkIndex)
-				}
-				return retVal
-			}
-			return nil
-		}
-		
-		return RpcCustomResponseRequest(client: self.client, host: "api", route: "/repos/\(owner)/\(repo)/stargazers", method: .get, params: ["page":page], postParams: nil, postData: nil,customResponseHandler:httpResponseHandler, defaultResponseQueue: defaultResponseQueue, responseSerializer: UserArraySerializer(), errorSerializer: StringSerializer())
+		return RpcCustomResponseRequest(client: self.client,
+		                                host: "api",
+		                                route: "/repos/\(owner)/\(repo)/stargazers",
+																		method: .get,
+																		params: ["page":page],
+																		postParams: nil,
+																		postData: nil,
+																		customResponseHandler: GPHttpResponseHandler.PageHandler,
+																		defaultResponseQueue: defaultResponseQueue,
+																		responseSerializer: UserArraySerializer(),
+																		errorSerializer: StringSerializer())
 	}
 	
 	/**
@@ -67,7 +57,9 @@ open class StarsRoutes {
 	- parameter owner:             owner's name.
 	- parameter complitionHandler: callback that call on main thread.
 	*/
-	fileprivate func getAllStargazersOldFor(repo: String, owner: String, complitionHandler:@escaping ([GithubUser]?, String?)-> Void) {
+	fileprivate func getAllStargazersOldFor(repo: String,
+	                                        owner: String,
+	                                        complitionHandler:@escaping ([GithubUser]?, String?)-> Void) {
 		self.longTimeWaitQueue.async { () -> Void in
 			let privateQueue = DispatchQueue(label: "com.githubpilot.stargazersRoutes.responseQueue", attributes: [])
 			var retVal: [GithubUser] = []
@@ -76,7 +68,10 @@ open class StarsRoutes {
 			var recursiveStargazers: (String, String, String, DispatchQueue?) -> Void = {_, _, _, _ in }
 			recursiveStargazers = {
 				repo, owner, page, queue in
-				self.getStargazersFor(repo: repo, owner: owner, page: page, defaultResponseQueue: queue).response {
+				self.getStargazersFor(repo: repo,
+				                      owner: owner,
+				                      page: page,
+				                      defaultResponseQueue: queue).response {
 					(nextPage, result, error) -> Void in
 					if let error = error {
 						retError = error.description
@@ -117,7 +112,9 @@ open class StarsRoutes {
 	- parameter owner:             owner's name.
 	- parameter complitionHandler: callback that call on main thread.
 	*/
-	open func getAllStargazersFor(repo: String, owner: String, complitionHandler:@escaping ([GithubUser]?, String?)-> Void) {
+	open func getAllStargazersFor(repo: String,
+	                              owner: String,
+	                              complitionHandler: @escaping ([GithubUser]?, String?) -> Void) {
 		var recursiveStargazers: (String, String, String) -> Void = {_, _, _ in }
 		var retVal: [GithubUser] = []
 		recursiveStargazers = {
@@ -137,7 +134,6 @@ open class StarsRoutes {
 				}
 			}
 		}
-		
 		recursiveStargazers(repo, owner, "1")
 	}
 }

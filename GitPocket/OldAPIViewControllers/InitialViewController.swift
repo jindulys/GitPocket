@@ -56,6 +56,7 @@ open class InitialViewController: UIViewController {
         if hasToken {
             self.tableView.startRefreshing()
         }
+			testGithub()
     }
     
     func setupViews() {
@@ -126,6 +127,25 @@ open class InitialViewController: UIViewController {
         arrayToMergeInto.append(contentsOf: originalEvents)
         self.events = arrayToMergeInto
     }
+	
+	func testGithub() {
+		guard let client = Github.authorizedClient else {
+			print("No authorized client")
+			return
+		}
+//		client.users.getUser(username: "jindulys").response { (user, error) in
+//			if let user = user {
+//				print(user.followersURL)
+//			}
+//		}
+		
+		client.users.getFollowingFor(user: "jindulys").response { (page, users, error) in
+			if let users = users {
+				print(users.count)
+			}
+			print(page)
+		}
+	}
 }
 
 
